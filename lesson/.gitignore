@@ -1,9 +1,10 @@
 HELP.md
 .gradle
-#build/
+build/
 !gradle/wrapper/gradle-wrapper.jar
 !**/src/main/**/build/
 !**/src/test/**/build/
+!lesson-0.0.1-SNAPSHOT.jar
 
 ### STS ###
 .apt_generated
@@ -18,7 +19,7 @@ bin/
 !**/src/test/**/bin/
 
 ### IntelliJ IDEA ###
-.idea
+../.idea/
 *.iws
 *.iml
 *.ipr
