@@ -6,6 +6,7 @@ build/
 !**/src/test/**/build/
 !lesson-0.0.1-SNAPSHOT.jar
 
+
 ### STS ###
 .apt_generated
 .classpath
@@ -44,3 +45,6 @@ application.yml
 
 .idea/modules/lesson.main.iml
 
+/gradlew
+/gradlew.bat
+/gradle/
