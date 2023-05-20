@@ -16,11 +16,10 @@ import io.swagger.annotations.ApiResponse;
 import io.swagger.annotations.ApiResponses;
 import project.lesson.dto.authmail.AuthMailRequestDto;
 import project.lesson.dto.authmail.AuthMailResponseDto;
-import project.lesson.exception.ExceptionMessage;
 import project.lesson.exception.authmail.AuthMailException;
 import project.lesson.service.AuthMailService;
 
-@Api(tags = "인증 관련 API")
+@Api(tags = {"인증 관련 API"})
 @RestController
 public class AuthController {
 	private AuthMailService authMailService;
@@ -36,8 +35,7 @@ public class AuthController {
 	)
 	@ApiResponses(
 			{
-					@ApiResponse(code = 200, message = "메일 인증번호", response = AuthMailResponseDto.class),
-					@ApiResponse(code = 400, message = "올바른 이메일 형식이 아닙니다.", response = ExceptionMessage.class)
+					@ApiResponse(code = 200, message = "메일 인증번호", response = AuthMailResponseDto.class)
 			}
 	)
 	@GetMapping("/auth/mail")
