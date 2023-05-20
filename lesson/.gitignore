@@ -48,3 +48,12 @@ application.yml
 /gradlew
 /gradlew.bat
 /gradle/
+
+/gradle/
+/gradle/
+
+.idea/modules/lesson.main.iml
+
+/gradlew
+/gradlew.bat
+/gradle/
