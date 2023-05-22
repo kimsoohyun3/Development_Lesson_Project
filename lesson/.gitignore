@@ -57,3 +57,6 @@ application.yml
 /gradlew
 /gradlew.bat
 /gradle/
+
+application-dev.yml
+application-local.yml
