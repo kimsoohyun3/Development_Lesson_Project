@@ -17,6 +17,12 @@ public class RecruitTeacher extends BaseEntity {
     @Column(name = "recruitTeacher_id")
     private Long id;
 
+    private String subject; // 과목
+
+    private String residence; // 거주지
+
+    private String onOrOff; // 과외 온 / 오프 여부
+
     private String title; // 제목
 
     private String content; // 내용

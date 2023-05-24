@@ -12,7 +12,7 @@ spring:
       matching-strategy: ant_path_matcher
   jpa:
     hibernate:
-      ddl-auto: create
+      ddl-auto: update
     properties:
       hibernate:
         format_sql: true
@@ -22,6 +22,16 @@ spring:
   messages:
     basename: i18n/exception
     encoding: UTF-8
+  mail:
+    host: smtp.naver.com
+    port: 465
+    username: watermelon9608@naver.com
+    password:
+    properties:
+      mail.smtp.auth: true
+      mail.smtp.ssl.enable: true
+      mail.smtp.ssl.trust: smtp.naver.com
+      mail.smtp.starttls.enable: true
 
 logging:
   level:
