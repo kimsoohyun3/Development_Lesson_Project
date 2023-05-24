@@ -1,0 +1,7 @@
+unKnown:
+  code: "-9999"
+  message: "An unknown error has occurred"
+
+resourceNotExist:
+  code: "-1007"
+  message: "The requested resource does not exist"
