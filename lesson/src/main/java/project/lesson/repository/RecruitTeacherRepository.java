@@ -12,10 +12,10 @@ import java.util.Optional;
 public interface RecruitTeacherRepository extends JpaRepository<RecruitTeacher, Long> {
 
     // 게시물 리스트 조회
-    @Query("select new project.lesson.dto.RecruitTeacher.RecruitTeacherDto(rt.id, rt.subject, rt.residence, rt.onOrOff, rt.title, rt.content) from RecruitTeacher rt")
+    @Query("select new project.lesson.dto.RecruitTeacher.RecruitTeacherDto(rt.id, rt.title, rt.content, rt.subject, rt.residence, rt.onOrOff) from RecruitTeacher rt")
     List<RecruitTeacherDto> findByPosts();
 
     // 게시물 ID로 게시물 단건 조회
-    @Query("select new project.lesson.dto.RecruitTeacher.RecruitTeacherDto(rt.id, rt.subject, rt.residence, rt.onOrOff, rt.title, rt.content) from RecruitTeacher rt where rt.id = :postId")
+    @Query("select new project.lesson.dto.RecruitTeacher.RecruitTeacherDto(rt.id, rt.title, rt.content, rt.subject, rt.residence, rt.onOrOff) from RecruitTeacher rt where rt.id = :postId")
     Optional<RecruitTeacherDto> findByPost(@Param("postId") Long postId);
 }
