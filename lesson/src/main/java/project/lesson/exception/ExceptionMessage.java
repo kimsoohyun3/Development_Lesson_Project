@@ -8,13 +8,11 @@ import lombok.Getter;
 @Getter
 @AllArgsConstructor
 public class ExceptionMessage {
-	private int code;
 	private String exceptionSimpleName;
 	private String msg;
 	private LocalDateTime time = LocalDateTime.now();
 
-	public ExceptionMessage(int code, String exceptionSimpleName, String msg) {
-		this.code = code;
+	public ExceptionMessage(String exceptionSimpleName, String msg) {
 		this.exceptionSimpleName = exceptionSimpleName;
 		this.msg = msg;
 	}

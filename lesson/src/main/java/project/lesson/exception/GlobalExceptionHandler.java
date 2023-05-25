@@ -12,7 +12,6 @@ public class GlobalExceptionHandler {
 	public ResponseEntity<ExceptionMessage> handleBindException(BindException e) {
 		String message = e.getBindingResult().getAllErrors().get(0).getDefaultMessage();
 		ExceptionMessage exceptionMessage = new ExceptionMessage(
-				HttpStatus.BAD_REQUEST.value(),
 				e.getClass().getSimpleName(),
 				message
 		);
