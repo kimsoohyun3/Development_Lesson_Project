@@ -1,5 +1,6 @@
 package project.lesson.controller;
 
+import io.swagger.annotations.Api;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -8,6 +9,7 @@ import project.lesson.service.RecruitTeacherService;
 
 import java.util.List;
 
+@Api(tags = {"과외 선생님 구인 관련 API"})
 @RestController
 @RequiredArgsConstructor
 @RequestMapping(value = "/v1/RecruitTeacher")
