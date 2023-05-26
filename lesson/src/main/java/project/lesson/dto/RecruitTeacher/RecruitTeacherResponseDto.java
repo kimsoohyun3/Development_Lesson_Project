@@ -6,7 +6,6 @@ import project.lesson.entity.RecruitTeacher.RecruitTeacher;
 import project.lesson.entity.RecruitTeacher.Subject;
 
 import java.time.LocalDateTime;
-import java.util.Optional;
 
 @Data
 public class RecruitTeacherResponseDto {
