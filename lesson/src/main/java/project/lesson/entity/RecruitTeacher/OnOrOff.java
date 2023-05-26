@@ -1,0 +1,18 @@
+package project.lesson.entity.RecruitTeacher;
+
+import com.fasterxml.jackson.annotation.JsonCreator;
+
+import java.util.Arrays;
+
+public enum OnOrOff {
+
+    ONLINE, OFFLINE;
+
+    @JsonCreator(mode = JsonCreator.Mode.DELEGATING)
+    public static OnOrOff from(String value) {
+        return Arrays.stream(values())
+                .filter(v -> v.name().equals(value))
+                .findAny()
+                .orElse(null);
+    }
+}
