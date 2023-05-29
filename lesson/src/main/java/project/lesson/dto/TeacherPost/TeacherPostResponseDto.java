@@ -1,15 +1,15 @@
-package project.lesson.dto.RecruitTeacher;
+package project.lesson.dto.TeacherPost;
 
 import io.swagger.annotations.ApiModelProperty;
-import lombok.Data;
-import project.lesson.entity.RecruitTeacher.OnOrOff;
-import project.lesson.entity.RecruitTeacher.RecruitTeacher;
-import project.lesson.entity.RecruitTeacher.Subject;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import project.lesson.entity.TeacherPost.OnOrOff;
+import project.lesson.entity.TeacherPost.TeacherPost;
+import project.lesson.entity.TeacherPost.Subject;
 
-import java.time.LocalDateTime;
-
-@Data
-public class RecruitTeacherResponseDto {
+@Getter
+@NoArgsConstructor
+public class TeacherPostResponseDto {
 
     @ApiModelProperty(example = "PK", value = "PK")
     private Long id;
@@ -29,17 +29,13 @@ public class RecruitTeacherResponseDto {
     @ApiModelProperty(example = "과외 온 / 오프 여부", value = "과외 온 / 오프 여부")
     private OnOrOff onOrOff;
 
-    @ApiModelProperty(example = "게시물 작성일자", value = "게시물 작성일자")
-    private LocalDateTime postWriteDate;
-
-    // repository 를 통해 조회한 entity 를 dto 변환
-    public RecruitTeacherResponseDto(RecruitTeacher entity) {
+    // entity 를 dto 변환
+    public TeacherPostResponseDto(TeacherPost entity) {
         this.id = entity.getId();
         this.title = entity.getTitle();
         this.content = entity.getContent();
         this.subject = entity.getSubject();
         this.area = entity.getArea();
         this.onOrOff = entity.getOnOrOff();
-        this.postWriteDate = LocalDateTime.now();
     }
 }

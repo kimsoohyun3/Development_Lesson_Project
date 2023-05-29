@@ -1,16 +1,16 @@
-package project.lesson.entity.RecruitTeacher;
+package project.lesson.entity.TeacherPost;
 
+import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import project.lesson.entity.Base.BaseEntity;
 
 import javax.persistence.*;
-import java.time.LocalDateTime;
 
 @Entity
 @Getter
 @NoArgsConstructor
-public class RecruitTeacher extends BaseEntity {
+public class TeacherPost extends BaseEntity {
 
     @Id
     @GeneratedValue
@@ -34,6 +34,20 @@ public class RecruitTeacher extends BaseEntity {
     @Enumerated(EnumType.STRING)
     private OnOrOff onOrOff; // 과외 온 / 오프 여부
 
-    @Column(nullable = false)
-    private LocalDateTime postWriteDate; // 게시글 작성일자
+    @Builder
+    public TeacherPost(String title, String content, Subject subject, String area, OnOrOff onOrOff) {
+        this.title = title;
+        this.content = content;
+        this.subject = subject;
+        this.area = area;
+        this.onOrOff = onOrOff;
+    }
+
+    public void updatePost(String title, String content, Subject subject, String area, OnOrOff onOrOff) {
+        this.title = title;
+        this.content = content;
+        this.subject = subject;
+        this.area = area;
+        this.onOrOff = onOrOff;
+    }
 }

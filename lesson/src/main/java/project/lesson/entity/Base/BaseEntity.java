@@ -1,5 +1,6 @@
 package project.lesson.entity.Base;
 
+import io.swagger.annotations.ApiModelProperty;
 import lombok.Getter;
 import org.springframework.data.annotation.CreatedDate;
 import org.springframework.data.annotation.LastModifiedDate;
@@ -14,9 +15,11 @@ import java.time.LocalDateTime;
 @Getter
 public abstract class BaseEntity {
 
+    @ApiModelProperty(example = "생성일자", value = "생성일자")
     @CreatedDate
-    private LocalDateTime createdDate; // 최초 작성일자
+    private LocalDateTime createdDate; // 최초 생성일자
 
+    @ApiModelProperty(example = "수정일자", value = "수정일자")
     @LastModifiedDate
     private LocalDateTime lastModifiedDate; // 마지막 수정일자
 }

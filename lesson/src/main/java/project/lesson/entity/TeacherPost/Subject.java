@@ -1,4 +1,4 @@
-package project.lesson.entity.RecruitTeacher;
+package project.lesson.entity.TeacherPost;
 
 import com.fasterxml.jackson.annotation.JsonCreator;
 

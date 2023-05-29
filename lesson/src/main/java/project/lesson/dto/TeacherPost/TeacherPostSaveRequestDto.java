@@ -1,18 +1,19 @@
-package project.lesson.dto.RecruitTeacher;
+package project.lesson.dto.TeacherPost;
 
 import io.swagger.annotations.ApiModelProperty;
-import lombok.Data;
+import lombok.Builder;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import project.lesson.entity.TeacherPost.OnOrOff;
+import project.lesson.entity.TeacherPost.TeacherPost;
+import project.lesson.entity.TeacherPost.Subject;
 
 import javax.validation.constraints.Max;
 import javax.validation.constraints.NotNull;
-import javax.validation.constraints.Size;
-import java.time.LocalDateTime;
 
-@Data
-public class RecruitTeacherRequestDto {
-
-    @ApiModelProperty(example = "PK", value = "PK", required = true)
-    private Long id;
+@Getter
+@NoArgsConstructor
+public class TeacherPostSaveRequestDto {
 
     @ApiModelProperty(example = "제목", value = "제목", required = true)
     @NotNull(message = "제목을 입력해주세요")
@@ -26,7 +27,7 @@ public class RecruitTeacherRequestDto {
 
     @ApiModelProperty(example = "과목", value = "과목", required = true)
     @NotNull(message = "과목을 선택해주세요")
-    private String subject;
+    private Subject subject;
 
     @ApiModelProperty(example = "지역", value = "지역", required = true)
     @NotNull(message = "지역을 입력해주세요")
@@ -34,8 +35,25 @@ public class RecruitTeacherRequestDto {
 
     @ApiModelProperty(example = "과외 온 / 오프 여부", value = "과외 온 / 오프 여부", required = true)
     @NotNull(message = "과외 온 / 오프 여부를 입력해주세요")
-    private String onOrOff;
+    private OnOrOff onOrOff;
 
-    @ApiModelProperty(example = "게시물 작성일자", value = "게시물 작성일자", required = true)
-    private LocalDateTime postWriteDate;
+    @Builder
+    public TeacherPostSaveRequestDto(String title, String content, Subject subject, String area, OnOrOff onOrOff) {
+        this.title = title;
+        this.content = content;
+        this.subject = subject;
+        this.area = area;
+        this.onOrOff = onOrOff;
     }
+
+    // dto 를 entity 변환
+    public TeacherPost toEntity() {
+        return TeacherPost.builder()
+                .title(title)
+                .content(content)
+                .subject(subject)
+                .area(area)
+                .onOrOff(onOrOff)
+                .build();
+    }
+}
