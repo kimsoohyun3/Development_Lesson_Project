@@ -43,7 +43,7 @@ public class AuthController {
 		try {
 			return ResponseEntity.ok().body(authMailService.sendAuthMail(authMailRequestDto));
 		} catch (MessagingException | UnsupportedEncodingException e) {
-			throw new AuthMailException();
+			throw new AuthMailException("메일 인증 실패");
 		}
 	}
 }

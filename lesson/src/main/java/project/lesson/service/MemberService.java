@@ -17,6 +17,10 @@ public class MemberService {
 	}
 
 	public MemberSaveResponseDto joinMember(MemberSaveRequestDto memberSaveRequestDto) {
+		memberRepository.findById(memberSaveRequestDto.getId()).ifPresent(member -> {
+			throw new IllegalArgumentException("이미 존재하는 ID입니다.");
+		});
+
 		return MemberSaveResponseDto
 				.of(memberRepository.save(MemberSaveRequestDto.toEntity(memberSaveRequestDto)));
 	}

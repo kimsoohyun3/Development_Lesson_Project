@@ -12,7 +12,7 @@ public class CResourceNotExistExceptionHandler {
     @ExceptionHandler(CResourceNotExistException.class)
     public ResponseEntity<ExceptionMessage> handleResourceNotExistException(CResourceNotExistException e) {
         ExceptionMessage exceptionMessage = new ExceptionMessage(
-                ExceptionEnum.RESOURCE_NOT_EXIST.getCode(), e.getMessage(),
+                e.getMessage(),
                 ExceptionEnum.RESOURCE_NOT_EXIST.getMessage()
         );
         return ResponseEntity.badRequest().body(exceptionMessage);
