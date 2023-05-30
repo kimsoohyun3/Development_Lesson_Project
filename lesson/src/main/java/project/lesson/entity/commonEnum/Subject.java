@@ -1,4 +1,4 @@
-package project.lesson.entity.TeacherPost;
+package project.lesson.entity.commonEnum;
 
 import com.fasterxml.jackson.annotation.JsonCreator;
 

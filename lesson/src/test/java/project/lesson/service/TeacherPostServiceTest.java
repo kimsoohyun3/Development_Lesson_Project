@@ -9,8 +9,8 @@ import org.springframework.test.context.junit.jupiter.SpringExtension;
 import project.lesson.dto.TeacherPost.TeacherPostResponseDto;
 import project.lesson.dto.TeacherPost.TeacherPostSaveRequestDto;
 import project.lesson.dto.TeacherPost.TeacherPostUpdateRequestDto;
-import project.lesson.entity.TeacherPost.OnOrOff;
-import project.lesson.entity.TeacherPost.Subject;
+import project.lesson.entity.commonEnum.OnOrOff;
+import project.lesson.entity.commonEnum.Subject;
 import project.lesson.entity.TeacherPost.TeacherPost;
 import project.lesson.repository.TeacherPostRepository;
 
