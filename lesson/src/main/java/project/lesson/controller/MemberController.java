@@ -4,7 +4,10 @@ import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -12,8 +15,10 @@ import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import io.swagger.annotations.ApiResponse;
 import io.swagger.annotations.ApiResponses;
+import project.lesson.dto.member.MemberInfoResponseDto;
 import project.lesson.dto.member.MemberSaveRequestDto;
 import project.lesson.dto.member.MemberSaveResponseDto;
+import project.lesson.dto.member.ModifyMemberPasswordRequestDto;
 import project.lesson.service.MemberService;
 
 @Api(tags = {"회원 관련 API"})
@@ -41,4 +46,18 @@ public class MemberController {
 	) {
 		return ResponseEntity.ok().body(memberService.joinMember(memberSaveRequestDto));
 	}
+
+	@GetMapping("/member/info/{memberId}")
+	public ResponseEntity<MemberInfoResponseDto> findMemberInfo(
+			@PathVariable("memberId") String memberId){
+		return ResponseEntity.ok().body(memberService.findMemberInfo(memberId));
+	}
+
+	@PutMapping("member/modify/password")
+	public String modifyMemberPassword(
+			@RequestBody @Valid ModifyMemberPasswordRequestDto modifyMemberPasswordRequestDto
+	) {
+		return memberService.modifyMemberPassword(modifyMemberPasswordRequestDto);
+	}
+
 }
