@@ -49,15 +49,16 @@ public class MemberController {
 
 	@GetMapping("/member/info/{memberId}")
 	public ResponseEntity<MemberInfoResponseDto> findMemberInfo(
-			@PathVariable("memberId") String memberId){
+			@PathVariable("memberId") String memberId) {
 		return ResponseEntity.ok().body(memberService.findMemberInfo(memberId));
 	}
 
-	@PutMapping("member/modify/password")
+	@PutMapping("member/modify-password/{memberId}")
 	public String modifyMemberPassword(
+			@PathVariable String memberId,
 			@RequestBody @Valid ModifyMemberPasswordRequestDto modifyMemberPasswordRequestDto
 	) {
-		return memberService.modifyMemberPassword(modifyMemberPasswordRequestDto);
+		return memberService.modifyMemberPassword(memberId,modifyMemberPasswordRequestDto);
 	}
 
 }

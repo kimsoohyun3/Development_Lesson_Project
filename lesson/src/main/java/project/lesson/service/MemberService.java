@@ -39,9 +39,9 @@ public class MemberService {
 	}
 
 	@Transactional
-	public String modifyMemberPassword(ModifyMemberPasswordRequestDto modifyMemberPasswordRequestDto) {
+	public String modifyMemberPassword(String memberId, ModifyMemberPasswordRequestDto modifyMemberPasswordRequestDto) {
 		Member findMember = memberRepository
-				.findById(modifyMemberPasswordRequestDto.getId())
+				.findById(memberId)
 				.orElseThrow(() -> {
 					throw new IllegalArgumentException("존재하지 않는 ID입니다.");
 				});
