@@ -57,5 +57,10 @@ public class Member extends BaseEntity {
 		this.userClassification = userClassification;
 		this.ageGroup = ageGroup;
 	}
+
+	public String modifyPassword(String password) {
+		this.password = password;
+		return this.id;
+	}
 }
 

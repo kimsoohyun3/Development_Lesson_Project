@@ -4,6 +4,7 @@ import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import project.lesson.entity.Base.BaseEntity;
+import project.lesson.entity.member.Member;
 
 import javax.persistence.*;
 
@@ -16,6 +17,9 @@ public class TeacherPost extends BaseEntity {
     @GeneratedValue
     @Column(name = "recruitTeacher_id")
     private Long id;
+
+    @ManyToOne(fetch = FetchType.LAZY)
+    private Member writer; // 작성자
 
     @Column(nullable = false)
     private String title; // 제목
