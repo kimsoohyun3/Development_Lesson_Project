@@ -10,12 +10,13 @@ import javax.persistence.Table;
 import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
+import project.lesson.entity.Base.BaseEntity;
 
 @Entity
 @Getter
 @Table(name = "MEMBER")
 @NoArgsConstructor
-public class Member {
+public class Member extends BaseEntity {
 	@Id
 	@Column(name = "ID")
 	String id;

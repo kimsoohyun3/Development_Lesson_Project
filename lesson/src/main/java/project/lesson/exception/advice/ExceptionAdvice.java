@@ -17,29 +17,31 @@ import javax.servlet.http.HttpServletRequest;
 @RestControllerAdvice
 public class ExceptionAdvice {
 
-    private final ResponseService responseService;
+	private final ResponseService responseService;
 
-    private final MessageSource messageSource;
+	private final MessageSource messageSource;
 
-    @ExceptionHandler(Exception.class)
-    @ResponseStatus(HttpStatus.INTERNAL_SERVER_ERROR)
-    protected CommonResult defaultException(HttpServletRequest request, Exception e) {
-        return responseService.getFailureResult(Integer.valueOf(getMessage("unKnown.code")), getMessage("unKnown.message") + "(" + e.getMessage() + ")");
-    }
+	@ExceptionHandler(Exception.class)
+	@ResponseStatus(HttpStatus.INTERNAL_SERVER_ERROR)
+	protected CommonResult defaultException(HttpServletRequest request, Exception e) {
+		return responseService.getFailureResult(Integer.valueOf(getMessage("unKnown.code")),
+				getMessage("unKnown.message") + "(" + e.getMessage() + ")");
+	}
 
-    @ExceptionHandler(CResourceNotExistException.class)
-    @ResponseStatus(HttpStatus.NOT_FOUND)
-    public CommonResult resourceNotExistException(HttpServletRequest request, CResourceNotExistException e) {
-        return responseService.getFailureResult(Integer.valueOf(getMessage("resourceNotExist.code")), getMessage("resourceNotExist.message"));
-    }
+	@ExceptionHandler(CResourceNotExistException.class)
+	@ResponseStatus(HttpStatus.NOT_FOUND)
+	public CommonResult resourceNotExistException(HttpServletRequest request, CResourceNotExistException e) {
+		return responseService.getFailureResult(Integer.valueOf(getMessage("resourceNotExist.code")),
+				getMessage("resourceNotExist.message"));
+	}
 
-    // 코드 정보에 해당하는 메시지를 조회
-    private String getMessage(String code) {
-        return getMessage(code, null);
-    }
+	// 코드 정보에 해당하는 메시지를 조회
+	private String getMessage(String code) {
+		return getMessage(code, null);
+	}
 
-    // 코드 정보, 추가 argument 로 현재 locale 에 맞는 메시지를 조회
-    private String getMessage(String code, Object[] args) {
-        return messageSource.getMessage(code, args, LocaleContextHolder.getLocale());
-    }
+	// 코드 정보, 추가 argument 로 현재 locale 에 맞는 메시지를 조회
+	private String getMessage(String code, Object[] args) {
+		return messageSource.getMessage(code, args, LocaleContextHolder.getLocale());
+	}
 }
