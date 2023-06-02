@@ -6,6 +6,7 @@ import lombok.NoArgsConstructor;
 import project.lesson.entity.Base.BaseEntity;
 import project.lesson.entity.commonEnum.OnOrOff;
 import project.lesson.entity.commonEnum.Subject;
+import project.lesson.entity.member.Member;
 
 import javax.persistence.*;
 
@@ -35,6 +36,10 @@ public class TeacherPost extends BaseEntity {
     @Column(nullable = false)
     @Enumerated(EnumType.STRING)
     private OnOrOff onOrOff; // 과외 온 / 오프 여부
+
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "ID")
+    private Member member; // 회원
 
     @Builder
     public TeacherPost(String title, String content, Subject subject, String area, OnOrOff onOrOff) {
