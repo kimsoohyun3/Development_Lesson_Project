@@ -6,18 +6,13 @@ import org.junit.jupiter.api.extension.ExtendWith;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.context.junit.jupiter.SpringExtension;
-import project.lesson.dto.StudentPost.StudentPostResponseDto;
-import project.lesson.dto.StudentPost.StudentPostSaveRequestDto;
-import project.lesson.dto.StudentPost.StudentPostUpdateRequestDto;
-import project.lesson.dto.TeacherPost.TeacherPostResponseDto;
-import project.lesson.dto.TeacherPost.TeacherPostSaveRequestDto;
-import project.lesson.dto.TeacherPost.TeacherPostUpdateRequestDto;
-import project.lesson.entity.StudentPost.StudentPost;
-import project.lesson.entity.TeacherPost.TeacherPost;
+import project.lesson.dto.studentPost.StudentPostResponseDto;
+import project.lesson.dto.studentPost.StudentPostSaveRequestDto;
+import project.lesson.dto.studentPost.StudentPostUpdateRequestDto;
+import project.lesson.entity.studentPost.StudentPost;
 import project.lesson.entity.commonEnum.OnOrOff;
 import project.lesson.entity.commonEnum.Subject;
 import project.lesson.repository.StudentPostRepository;
-import project.lesson.repository.TeacherPostRepository;
 
 import java.util.List;
 

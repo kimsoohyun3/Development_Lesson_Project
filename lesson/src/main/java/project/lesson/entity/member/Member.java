@@ -5,7 +5,8 @@ import javax.persistence.*;
 import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
-import project.lesson.entity.TeacherPost.TeacherPost;
+import project.lesson.entity.base.BaseEntity;
+import project.lesson.entity.teacherPost.TeacherPost;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -14,7 +15,7 @@ import java.util.List;
 @Getter
 @Table(name = "MEMBER")
 @NoArgsConstructor
-public class Member {
+public class Member extends BaseEntity {
 	@Id
 	@Column(name = "ID")
 	String id;
@@ -57,6 +58,11 @@ public class Member {
 		this.gender = gender;
 		this.userClassification = userClassification;
 		this.ageGroup = ageGroup;
+	}
+
+	public String modifyPassword(String password) {
+		this.password = password;
+		return this.id;
 	}
 }
 

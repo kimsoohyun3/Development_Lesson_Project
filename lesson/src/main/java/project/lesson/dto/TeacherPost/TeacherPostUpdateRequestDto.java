@@ -1,4 +1,4 @@
-package project.lesson.dto.TeacherPost;
+package project.lesson.dto.teacherPost;
 
 import io.swagger.annotations.ApiModelProperty;
 import lombok.Builder;

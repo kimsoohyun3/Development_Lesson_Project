@@ -1,9 +1,9 @@
-package project.lesson.entity.StudentPost;
+package project.lesson.entity.studentPost;
 
 import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
-import project.lesson.entity.Base.BaseEntity;
+import project.lesson.entity.base.BaseEntity;
 import project.lesson.entity.commonEnum.OnOrOff;
 import project.lesson.entity.commonEnum.Subject;
 import project.lesson.entity.member.Member;
