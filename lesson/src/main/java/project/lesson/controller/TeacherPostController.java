@@ -2,12 +2,14 @@ package project.lesson.controller;
 
 import io.swagger.annotations.Api;
 import lombok.RequiredArgsConstructor;
+
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import project.lesson.dto.teacherPost.MyTeacherPostResponseDto;
 import project.lesson.dto.teacherPost.TeacherPostResponseDto;
 import project.lesson.dto.teacherPost.TeacherPostSaveRequestDto;
 import project.lesson.dto.teacherPost.TeacherPostUpdateRequestDto;
+
 import project.lesson.service.TeacherPostService;
 
 import java.util.List;
@@ -18,6 +20,7 @@ import java.util.List;
 public class TeacherPostController {
 
 	private final TeacherPostService teacherPostService;
+
 
     // 게시물 등록
     @PostMapping(value = "/v1/teacherPost")
