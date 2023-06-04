@@ -2,12 +2,11 @@ package project.lesson.controller;
 
 import io.swagger.annotations.Api;
 import lombok.RequiredArgsConstructor;
+import org.springframework.data.domain.Pageable;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
-import project.lesson.dto.teacherPost.MyTeacherPostResponseDto;
-import project.lesson.dto.teacherPost.TeacherPostResponseDto;
-import project.lesson.dto.teacherPost.TeacherPostSaveRequestDto;
-import project.lesson.dto.teacherPost.TeacherPostUpdateRequestDto;
+import project.lesson.dto.teacherPost.*;
+import project.lesson.entity.commonClass.SearchCondition;
 import project.lesson.service.TeacherPostService;
 
 import java.util.List;
@@ -39,10 +38,10 @@ public class TeacherPostController {
 		return postId;
 	}
 
-    // 게시물 리스트 조회
+    // 게시물 리스트 조회(검색)
     @GetMapping(value = "/v1/teacherPosts")
-    public ResponseEntity<List<TeacherPostResponseDto>> findPosts() {
-        return ResponseEntity.ok().body(teacherPostService.findPosts());
+    public ResponseEntity<List<TeacherPostResponseDto>> findPosts(SearchCondition searchCondition, Pageable pageable) {
+        return ResponseEntity.ok().body(teacherPostService.findPosts(searchCondition, pageable));
     }
 
     // 게시물 ID로 게시물 단건 조회

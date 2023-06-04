@@ -5,10 +5,12 @@ import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
+import org.springframework.data.domain.Pageable;
 import org.springframework.test.context.junit.jupiter.SpringExtension;
 import project.lesson.dto.studentPost.StudentPostResponseDto;
 import project.lesson.dto.studentPost.StudentPostSaveRequestDto;
 import project.lesson.dto.studentPost.StudentPostUpdateRequestDto;
+import project.lesson.entity.commonClass.SearchCondition;
 import project.lesson.entity.studentPost.StudentPost;
 import project.lesson.entity.commonEnum.OnOrOff;
 import project.lesson.entity.commonEnum.Subject;
@@ -17,6 +19,7 @@ import project.lesson.repository.StudentPostRepository;
 import java.util.List;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
+import static project.lesson.entity.commonEnum.SearchType.TITLE;
 
 @ExtendWith(SpringExtension.class)
 @SpringBootTest
@@ -121,10 +124,10 @@ class StudentPostServiceTest {
         studentPostService.savePost(saveRequestDto2);
 
         // when
-        List<StudentPostResponseDto> studentPostDtoList = studentPostService.findPosts();
+        List<StudentPostResponseDto> studentPostDtoList = studentPostService.findPosts(new SearchCondition(TITLE, "제목"), Pageable.ofSize(10));
 
         // then
-        assertEquals(studentPostDtoList.size(), 2);
+        assertEquals(studentPostDtoList.size(), 1);
     }
 
     // 게시물 ID로 게시물 단건 조회 테스트
