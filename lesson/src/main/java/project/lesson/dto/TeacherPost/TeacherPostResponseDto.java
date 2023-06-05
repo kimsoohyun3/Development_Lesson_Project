@@ -1,14 +1,12 @@
 package project.lesson.dto.teacherPost;
 
 import io.swagger.annotations.ApiModelProperty;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
+import lombok.Data;
 import project.lesson.entity.commonEnum.OnOrOff;
 import project.lesson.entity.teacherPost.TeacherPost;
 import project.lesson.entity.commonEnum.Subject;
 
-@Getter
-@NoArgsConstructor
+@Data
 public class TeacherPostResponseDto {
 
     @ApiModelProperty(example = "PK", value = "PK")

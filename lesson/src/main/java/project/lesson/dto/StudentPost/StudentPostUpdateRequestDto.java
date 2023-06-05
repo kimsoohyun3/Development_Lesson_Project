@@ -2,7 +2,7 @@ package project.lesson.dto.studentPost;
 
 import io.swagger.annotations.ApiModelProperty;
 import lombok.Builder;
-import lombok.Getter;
+import lombok.Data;
 import lombok.NoArgsConstructor;
 import project.lesson.entity.commonEnum.OnOrOff;
 import project.lesson.entity.commonEnum.Subject;
@@ -10,7 +10,7 @@ import project.lesson.entity.commonEnum.Subject;
 import javax.validation.constraints.Max;
 import javax.validation.constraints.NotNull;
 
-@Getter
+@Data
 @NoArgsConstructor
 public class StudentPostUpdateRequestDto {
 

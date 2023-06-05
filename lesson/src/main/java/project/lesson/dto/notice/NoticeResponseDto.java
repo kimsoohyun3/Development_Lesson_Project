@@ -1,15 +1,10 @@
 package project.lesson.dto.notice;
 
 import io.swagger.annotations.ApiModelProperty;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
+import lombok.Data;
 import project.lesson.entity.notice.Notice;
-import project.lesson.entity.studentPost.StudentPost;
-import project.lesson.entity.commonEnum.OnOrOff;
-import project.lesson.entity.commonEnum.Subject;
 
-@Getter
-@NoArgsConstructor
+@Data
 public class NoticeResponseDto {
 
     @ApiModelProperty(example = "PK", value = "PK")

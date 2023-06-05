@@ -1,17 +1,17 @@
 package project.lesson.service;
 
 import lombok.RequiredArgsConstructor;
-
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
-import project.lesson.dto.teacherPost.MyTeacherPostResponseDto;
-import project.lesson.dto.teacherPost.TeacherPostResponseDto;
-import project.lesson.dto.teacherPost.TeacherPostSaveRequestDto;
-import project.lesson.dto.teacherPost.TeacherPostUpdateRequestDto;
+import project.lesson.dto.teacherPost.*;
+import project.lesson.entity.commonClass.SearchCondition;
 import project.lesson.entity.teacherPost.TeacherPost;
 import project.lesson.entity.member.Member;
 import project.lesson.exception.common.CResourceNotExistException;
 import project.lesson.repository.MemberRepository;
 import project.lesson.repository.TeacherPostRepository;
+import project.lesson.repository.TeacherPostRepositoryImpl;
 
 import javax.transaction.Transactional;
 
@@ -24,6 +24,7 @@ import java.util.stream.Collectors;
 public class TeacherPostService {
 
 	private final TeacherPostRepository teacherPostRepository;
+	private final TeacherPostRepositoryImpl teacherPostRepositoryImpl;
 	private final MemberRepository memberRepository;
 
 	// 게시물 등록
@@ -50,9 +51,9 @@ public class TeacherPostService {
 		teacherPostRepository.delete(teacherPost);
 	}
 
-	// 게시물 리스트 조회
-	public List<TeacherPostResponseDto> findPosts() {
-		List<TeacherPost> entityList = teacherPostRepository.findAll();
+	// 게시물 리스트 조회(검색)
+	public List<TeacherPostResponseDto> findPosts(SearchCondition searchCondition, Pageable pageable) {
+		Page<TeacherPost> entityList = teacherPostRepositoryImpl.searchPage(searchCondition, pageable);
 
 		List<TeacherPostResponseDto> dtoList = entityList.stream()
 				.map(m -> new TeacherPostResponseDto(m))
@@ -73,7 +74,7 @@ public class TeacherPostService {
 		Member member = memberRepository.findById(memberId)
 				.orElseThrow(() -> new IllegalArgumentException("존재하지 않는 ID입니다."));
 
-		List<TeacherPost> myPosts = teacherPostRepository.findByWriter(member);
+		List<TeacherPost> myPosts = teacherPostRepository.findByMember(member);
 
 		return new MyTeacherPostResponseDto(myPosts);
 	}
