@@ -18,6 +18,7 @@ public class TeacherPostController {
 
 	private final TeacherPostService teacherPostService;
 
+
     // 게시물 등록
     @PostMapping(value = "/v1/teacherPost")
     public Long savePost(@RequestBody TeacherPostSaveRequestDto requestDto) {
