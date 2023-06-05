@@ -5,6 +5,7 @@ import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 import project.lesson.dto.teacherPost.*;
+import project.lesson.entity.commonClass.SearchCondition;
 import project.lesson.entity.teacherPost.TeacherPost;
 import project.lesson.entity.member.Member;
 import project.lesson.exception.common.CResourceNotExistException;
@@ -51,7 +52,7 @@ public class TeacherPostService {
 	}
 
 	// 게시물 리스트 조회(검색)
-	public List<TeacherPostResponseDto> findPosts(TeacherPostSearchCondition searchCondition, Pageable pageable) {
+	public List<TeacherPostResponseDto> findPosts(SearchCondition searchCondition, Pageable pageable) {
 		Page<TeacherPost> entityList = teacherPostRepositoryImpl.searchPage(searchCondition, pageable);
 
 		List<TeacherPostResponseDto> dtoList = entityList.stream()

@@ -9,8 +9,8 @@ import org.springframework.data.domain.Pageable;
 import org.springframework.test.context.junit.jupiter.SpringExtension;
 import project.lesson.dto.teacherPost.TeacherPostResponseDto;
 import project.lesson.dto.teacherPost.TeacherPostSaveRequestDto;
-import project.lesson.dto.teacherPost.TeacherPostSearchCondition;
 import project.lesson.dto.teacherPost.TeacherPostUpdateRequestDto;
+import project.lesson.entity.commonClass.SearchCondition;
 import project.lesson.entity.commonEnum.OnOrOff;
 import project.lesson.entity.commonEnum.Subject;
 import project.lesson.entity.teacherPost.TeacherPost;
@@ -124,7 +124,7 @@ class TeacherPostServiceTest {
         teacherPostService.savePost(saveRequestDto2);
 
         // when
-        List<TeacherPostResponseDto> teacherPostDtoList = teacherPostService.findPosts(new TeacherPostSearchCondition(TITLE, "제목"), Pageable.ofSize(10));
+        List<TeacherPostResponseDto> teacherPostDtoList = teacherPostService.findPosts(new SearchCondition(TITLE, "제목"), Pageable.ofSize(10));
 
         // then
         assertEquals(teacherPostDtoList.size(), 1);

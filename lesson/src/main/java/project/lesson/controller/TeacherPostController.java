@@ -6,6 +6,7 @@ import org.springframework.data.domain.Pageable;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import project.lesson.dto.teacherPost.*;
+import project.lesson.entity.commonClass.SearchCondition;
 import project.lesson.service.TeacherPostService;
 
 import java.util.List;
@@ -16,6 +17,7 @@ import java.util.List;
 public class TeacherPostController {
 
 	private final TeacherPostService teacherPostService;
+
 
     // 게시물 등록
     @PostMapping(value = "/v1/teacherPost")
@@ -39,7 +41,7 @@ public class TeacherPostController {
 
     // 게시물 리스트 조회(검색)
     @GetMapping(value = "/v1/teacherPosts")
-    public ResponseEntity<List<TeacherPostResponseDto>> findPosts(TeacherPostSearchCondition searchCondition, Pageable pageable) {
+    public ResponseEntity<List<TeacherPostResponseDto>> findPosts(SearchCondition searchCondition, Pageable pageable) {
         return ResponseEntity.ok().body(teacherPostService.findPosts(searchCondition, pageable));
     }
 

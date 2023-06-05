@@ -2,11 +2,13 @@ package project.lesson.controller;
 
 import io.swagger.annotations.Api;
 import lombok.RequiredArgsConstructor;
+import org.springframework.data.domain.Pageable;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import project.lesson.dto.studentPost.StudentPostResponseDto;
 import project.lesson.dto.studentPost.StudentPostSaveRequestDto;
 import project.lesson.dto.studentPost.StudentPostUpdateRequestDto;
+import project.lesson.entity.commonClass.SearchCondition;
 import project.lesson.service.StudentPostService;
 
 import java.util.List;
@@ -38,10 +40,10 @@ public class StudentPostController {
         return postId;
     }
 
-    // 게시물 리스트 조회
+    // 게시물 리스트 조회(검색)
     @GetMapping(value = "/v1/studentPosts")
-    public ResponseEntity<List<StudentPostResponseDto>> findPosts() {
-        return ResponseEntity.ok().body(studentPostService.findPosts());
+    public ResponseEntity<List<StudentPostResponseDto>> findPosts(SearchCondition searchCondition, Pageable pageable) {
+        return ResponseEntity.ok().body(studentPostService.findPosts(searchCondition, pageable));
     }
 
     // 게시물 ID로 게시물 단건 조회
