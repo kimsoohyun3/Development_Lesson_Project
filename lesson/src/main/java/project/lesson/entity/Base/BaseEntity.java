@@ -1,4 +1,4 @@
-package project.lesson.entity.Base;
+package project.lesson.entity.base;
 
 import io.swagger.annotations.ApiModelProperty;
 import lombok.Getter;

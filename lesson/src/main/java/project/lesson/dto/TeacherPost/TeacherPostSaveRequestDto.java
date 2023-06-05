@@ -1,12 +1,12 @@
-package project.lesson.dto.TeacherPost;
+package project.lesson.dto.teacherPost;
 
 import io.swagger.annotations.ApiModelProperty;
 import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
-import project.lesson.entity.TeacherPost.OnOrOff;
-import project.lesson.entity.TeacherPost.TeacherPost;
-import project.lesson.entity.TeacherPost.Subject;
+import project.lesson.entity.commonEnum.OnOrOff;
+import project.lesson.entity.teacherPost.TeacherPost;
+import project.lesson.entity.commonEnum.Subject;
 
 import javax.validation.constraints.Max;
 import javax.validation.constraints.NotNull;

@@ -1,9 +1,10 @@
-package project.lesson.dto.teacherPost;
+package project.lesson.dto.studentPost;
 
 import io.swagger.annotations.ApiModelProperty;
 import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
+import project.lesson.entity.studentPost.StudentPost;
 import project.lesson.entity.commonEnum.OnOrOff;
 import project.lesson.entity.commonEnum.Subject;
 
@@ -12,7 +13,7 @@ import javax.validation.constraints.NotNull;
 
 @Getter
 @NoArgsConstructor
-public class TeacherPostUpdateRequestDto {
+public class StudentPostSaveRequestDto {
 
     @ApiModelProperty(example = "제목", value = "제목", required = true)
     @NotNull(message = "제목을 입력해주세요")
@@ -37,11 +38,22 @@ public class TeacherPostUpdateRequestDto {
     private OnOrOff onOrOff;
 
     @Builder
-    public TeacherPostUpdateRequestDto(String title, String content, Subject subject, String area, OnOrOff onOrOff) {
+    public StudentPostSaveRequestDto(String title, String content, Subject subject, String area, OnOrOff onOrOff) {
         this.title = title;
         this.content = content;
         this.subject = subject;
         this.area = area;
         this.onOrOff = onOrOff;
+    }
+
+    // dto 를 entity 변환
+    public StudentPost toEntity() {
+        return StudentPost.builder()
+                .title(title)
+                .content(content)
+                .subject(subject)
+                .area(area)
+                .onOrOff(onOrOff)
+                .build();
     }
 }

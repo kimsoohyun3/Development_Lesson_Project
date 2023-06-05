@@ -3,12 +3,11 @@ package project.lesson.service;
 import lombok.RequiredArgsConstructor;
 
 import org.springframework.stereotype.Service;
-
-import project.lesson.dto.TeacherPost.MyTeacherPostResponseDto;
-import project.lesson.dto.TeacherPost.TeacherPostResponseDto;
-import project.lesson.dto.TeacherPost.TeacherPostSaveRequestDto;
-import project.lesson.dto.TeacherPost.TeacherPostUpdateRequestDto;
-import project.lesson.entity.TeacherPost.TeacherPost;
+import project.lesson.dto.teacherPost.MyTeacherPostResponseDto;
+import project.lesson.dto.teacherPost.TeacherPostResponseDto;
+import project.lesson.dto.teacherPost.TeacherPostSaveRequestDto;
+import project.lesson.dto.teacherPost.TeacherPostUpdateRequestDto;
+import project.lesson.entity.teacherPost.TeacherPost;
 import project.lesson.entity.member.Member;
 import project.lesson.exception.common.CResourceNotExistException;
 import project.lesson.repository.MemberRepository;

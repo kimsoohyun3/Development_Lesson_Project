@@ -1,4 +1,4 @@
-package project.lesson.dto.teacherPost;
+package project.lesson.dto.notice;
 
 import io.swagger.annotations.ApiModelProperty;
 import lombok.Builder;
@@ -12,7 +12,7 @@ import javax.validation.constraints.NotNull;
 
 @Getter
 @NoArgsConstructor
-public class TeacherPostUpdateRequestDto {
+public class NoticeUpdateRequestDto {
 
     @ApiModelProperty(example = "제목", value = "제목", required = true)
     @NotNull(message = "제목을 입력해주세요")
@@ -37,7 +37,7 @@ public class TeacherPostUpdateRequestDto {
     private OnOrOff onOrOff;
 
     @Builder
-    public TeacherPostUpdateRequestDto(String title, String content, Subject subject, String area, OnOrOff onOrOff) {
+    public NoticeUpdateRequestDto(String title, String content, Subject subject, String area, OnOrOff onOrOff) {
         this.title = title;
         this.content = content;
         this.subject = subject;

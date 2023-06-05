@@ -1,16 +1,15 @@
 package project.lesson.entity.member;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.EnumType;
-import javax.persistence.Enumerated;
-import javax.persistence.Id;
-import javax.persistence.Table;
+import javax.persistence.*;
 
 import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
-import project.lesson.entity.Base.BaseEntity;
+import project.lesson.entity.base.BaseEntity;
+import project.lesson.entity.teacherPost.TeacherPost;
+
+import java.util.ArrayList;
+import java.util.List;
 
 @Entity
 @Getter
@@ -41,6 +40,9 @@ public class Member extends BaseEntity {
 	@Column(name = "AGE_GROUP", nullable = false)
 	@Enumerated(EnumType.STRING)
 	AgeGroup ageGroup;
+
+	@OneToMany(mappedBy = "member")
+	private List<TeacherPost> teacherPosts = new ArrayList<>();
 
 	@Builder
 	public Member(

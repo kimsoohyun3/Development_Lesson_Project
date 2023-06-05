@@ -1,4 +1,4 @@
-package project.lesson.entity.teacherPost;
+package project.lesson.entity.studentPost;
 
 import lombok.Builder;
 import lombok.Getter;
@@ -13,15 +13,12 @@ import javax.persistence.*;
 @Entity
 @Getter
 @NoArgsConstructor
-public class TeacherPost extends BaseEntity {
+public class StudentPost extends BaseEntity {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "teacherPost_id")
+    @Column(name = "studentPost_id")
     private Long id;
-
-    @ManyToOne(fetch = FetchType.LAZY)
-    private Member writer; // 작성자
 
     @Column(nullable = false)
     private String title; // 제목
@@ -45,7 +42,7 @@ public class TeacherPost extends BaseEntity {
     private Member member; // 회원
 
     @Builder
-    public TeacherPost(String title, String content, Subject subject, String area, OnOrOff onOrOff) {
+    public StudentPost(String title, String content, Subject subject, String area, OnOrOff onOrOff) {
         this.title = title;
         this.content = content;
         this.subject = subject;
