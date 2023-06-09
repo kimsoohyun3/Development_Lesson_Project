@@ -5,7 +5,7 @@ import java.util.Arrays;
 import com.fasterxml.jackson.annotation.JsonCreator;
 
 public enum AgeGroup {
-	TEENS, TWENTIES, THIRTIES, FORTIES, FIFTIES, SIXTIES, SEVENTIES, EIGHTIES, NINTIES, OVER_NINETY;
+	TWENTIES, THIRTIES, FORTIES, FIFTIES;
 
 	@JsonCreator(mode = JsonCreator.Mode.DELEGATING)
 	public static AgeGroup from(String value) {
