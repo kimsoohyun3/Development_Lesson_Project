@@ -45,12 +45,17 @@ public class Member extends BaseEntity {
 	@Enumerated(EnumType.STRING)
 	AgeGroup ageGroup;
 
+	@Column(name = "CAREER")
+	@Enumerated(EnumType.STRING)
+	Career career;
+
 	@Builder
 	public Member(
 			String id, String password, String email,
 			String nickname, Gender gender,
 			UserClassification userClassification,
-			AgeGroup ageGroup
+			AgeGroup ageGroup,
+			Career career
 	) {
 		this.id = id;
 		this.password = password;
@@ -59,6 +64,7 @@ public class Member extends BaseEntity {
 		this.gender = gender;
 		this.userClassification = userClassification;
 		this.ageGroup = ageGroup;
+		this.career = career;
 	}
 
 	public String modifyPassword(String password) {

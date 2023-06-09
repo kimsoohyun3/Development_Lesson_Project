@@ -7,6 +7,7 @@ import io.swagger.annotations.ApiModelProperty;
 import lombok.Builder;
 import lombok.Getter;
 import project.lesson.entity.member.AgeGroup;
+import project.lesson.entity.member.Career;
 import project.lesson.entity.member.Gender;
 import project.lesson.entity.member.Member;
 import project.lesson.entity.member.UserClassification;
@@ -50,12 +51,17 @@ public class MemberSaveRequestDto {
 	@NotNull(message = "올바르지 않은 연령대 타입입니다.")
 	private AgeGroup ageGroup;
 
+	@ApiModelProperty(example = "경력", value = "경력", required = true)
+	@NotNull(message = "올바르지 않은 경력 타입입니다.")
+	private Career career;
+
 	@Builder
 	public MemberSaveRequestDto(
 			String id, String password, String email,
 			String nickname, Gender gender,
 			UserClassification userClassification,
-			AgeGroup ageGroup
+			AgeGroup ageGroup,
+			Career career
 	) {
 		this.id = id;
 		this.password = password;
@@ -64,6 +70,7 @@ public class MemberSaveRequestDto {
 		this.gender = gender;
 		this.userClassification = userClassification;
 		this.ageGroup = ageGroup;
+		this.career = career;
 	}
 
 	public static Member toEntity(MemberSaveRequestDto memberSaveRequestDto) {
@@ -75,6 +82,7 @@ public class MemberSaveRequestDto {
 				.gender(memberSaveRequestDto.getGender())
 				.userClassification(memberSaveRequestDto.getUserClassification())
 				.ageGroup(memberSaveRequestDto.getAgeGroup())
+				.career(memberSaveRequestDto.getCareer())
 				.build();
 	}
 }

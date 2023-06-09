@@ -4,6 +4,7 @@ import io.swagger.annotations.ApiModelProperty;
 import lombok.Builder;
 import lombok.Getter;
 import project.lesson.entity.member.AgeGroup;
+import project.lesson.entity.member.Career;
 import project.lesson.entity.member.Gender;
 import project.lesson.entity.member.Member;
 import project.lesson.entity.member.UserClassification;
@@ -24,13 +25,16 @@ public class MemberInfoResponseDto {
 	private UserClassification userClassification;
 	@ApiModelProperty(example = "연령대", value = "연령대")
 	private AgeGroup ageGroup;
+	@ApiModelProperty(example = "경력", value = "경력")
+	private Career career;
 
 	@Builder
 	public MemberInfoResponseDto(
 			String id, String password, String email,
 			String nickname, Gender gender,
 			UserClassification userClassification,
-			AgeGroup ageGroup
+			AgeGroup ageGroup,
+			Career career
 	) {
 		this.id = id;
 		this.password = password;
@@ -39,6 +43,7 @@ public class MemberInfoResponseDto {
 		this.gender = gender;
 		this.userClassification = userClassification;
 		this.ageGroup = ageGroup;
+		this.career = career;
 	}
 
 	public static MemberInfoResponseDto of(Member member) {
@@ -50,6 +55,7 @@ public class MemberInfoResponseDto {
 				.gender(member.getGender())
 				.userClassification(member.getUserClassification())
 				.ageGroup(member.getAgeGroup())
+				.career(member.getCareer())
 				.build();
 	}
 }
