@@ -9,7 +9,11 @@ import project.lesson.entity.base.BaseEntity;
 import project.lesson.entity.teacherPost.TeacherPost;
 
 import java.util.ArrayList;
+import java.util.Collection;
 import java.util.List;
+
+import org.springframework.security.core.GrantedAuthority;
+import org.springframework.security.core.userdetails.UserDetails;
 
 @Entity
 @Getter
@@ -41,9 +45,6 @@ public class Member extends BaseEntity {
 	@Enumerated(EnumType.STRING)
 	AgeGroup ageGroup;
 
-	@OneToMany(mappedBy = "member")
-	private List<TeacherPost> teacherPosts = new ArrayList<>();
-
 	@Builder
 	public Member(
 			String id, String password, String email,
@@ -64,5 +65,6 @@ public class Member extends BaseEntity {
 		this.password = password;
 		return this.id;
 	}
+
 }
 
