@@ -8,6 +8,9 @@ import javax.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 
 import io.swagger.annotations.Api;
@@ -16,17 +19,22 @@ import io.swagger.annotations.ApiResponse;
 import io.swagger.annotations.ApiResponses;
 import project.lesson.dto.authmail.AuthMailRequestDto;
 import project.lesson.dto.authmail.AuthMailResponseDto;
+import project.lesson.dto.signin.SignInRequestDto;
+import project.lesson.dto.signin.SignInResponseDto;
 import project.lesson.exception.authmail.AuthMailException;
 import project.lesson.service.AuthMailService;
+import project.lesson.service.AuthService;
 
 @Api(tags = {"인증 관련 API"})
 @RestController
 public class AuthController {
 	private AuthMailService authMailService;
+	private AuthService authService;
 
 	@Autowired
-	public AuthController(AuthMailService authMailService) {
+	public AuthController(AuthMailService authMailService, AuthService authService) {
 		this.authMailService = authMailService;
+		this.authService = authService;
 	}
 
 	@ApiOperation(
@@ -45,5 +53,19 @@ public class AuthController {
 		} catch (MessagingException | UnsupportedEncodingException e) {
 			throw new AuthMailException("메일 인증 실패");
 		}
+	}
+
+	@ApiOperation(
+			value = "로그인",
+			notes = "로그인을 진행합니다."
+	)
+	@ApiResponses(
+			{
+					@ApiResponse(code = 200, message = "JWT", response = SignInResponseDto.class)
+			}
+	)
+	@PostMapping("/auth/sign-in")
+	public ResponseEntity<SignInResponseDto> signIn(@RequestBody SignInRequestDto signInRequestDto) {
+		return ResponseEntity.ok().body(authService.signIn(signInRequestDto));
 	}
 }
