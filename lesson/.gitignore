@@ -20,7 +20,7 @@ bin/
 !**/src/test/**/bin/
 
 ### IntelliJ IDEA ###
-../.idea/
+../.idea
 *.iws
 *.iml
 *.ipr
@@ -42,15 +42,6 @@ out/
 ### property files ###
 application.yml
 
-
-.idea/modules/lesson.main.iml
-
-/gradlew
-/gradlew.bat
-/gradle/
-
-/gradle/
-/gradle/
 
 .idea/modules/lesson.main.iml
 
