@@ -38,7 +38,7 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 						"/v2/api-docs", "/configuration/ui",
 						"/swagger-resources", "/configuration/security",
 						"/swagger-ui/index.html", "/webjars/**", "/swagger/**",
-						"/swagger-resources/**", "/auth/sign-in"
+						"/swagger-resources/**", "/auth/sign-in", "swagger-ui/**"
 				).permitAll()
 				.anyRequest()
 				.authenticated()
@@ -55,6 +55,12 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 	@Override
 	public void configure(WebSecurity web) throws Exception {
 		web.debug(true);
+		web.ignoring()
+				.antMatchers("/v2/api-docs", "/configuration/ui",
+						"/swagger-resources", "/configuration/security",
+						"/swagger-ui/index.html", "/webjars/**", "/swagger/**",
+						"/swagger-resources/**", "/auth/sign-in", "swagger-ui/**")
+
 	}
 
 	@Bean
