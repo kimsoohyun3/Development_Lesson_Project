@@ -52,14 +52,6 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 		);
 	}
 
-	@Override
-	public void configure(WebSecurity web) throws Exception {
-		web.debug(true);
-		web.ignoring().antMatchers("/v2/api-docs", "/configuration/ui",
-				"/swagger-resources", "/configuration/security",
-				"/swagger-ui/index.html", "/webjars/**", "/swagger/**",
-				"/swagger-resources/**");
-	}
 
 	@Bean
 	public CorsConfigurationSource corsConfigurationSource() {
