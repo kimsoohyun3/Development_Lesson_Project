@@ -13,7 +13,7 @@ import lombok.RequiredArgsConstructor;
 import project.lesson.dto.studentPost.StudentPostSaveRequestDto;
 import project.lesson.dto.studentPost.StudentPostUpdateRequestDto;
 import project.lesson.dto.studentpost.StudentPostResponseDto;
-import project.lesson.entity.StudentPost.StudentPost;
+import project.lesson.entity.studentpost.StudentPost;
 import project.lesson.entity.commonClass.SearchCondition;
 import project.lesson.exception.common.CResourceNotExistException;
 import project.lesson.repository.StudentPostRepository;
