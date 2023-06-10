@@ -14,7 +14,7 @@ import org.springframework.data.domain.Pageable;
 import com.querydsl.core.types.dsl.BooleanExpression;
 import com.querydsl.jpa.impl.JPAQueryFactory;
 
-import project.lesson.entity.StudentPost.StudentPost;
+import project.lesson.entity.studentpost.StudentPost;
 import project.lesson.entity.commonClass.SearchCondition;
 import project.lesson.entity.commonEnum.SearchType;
 import project.lesson.entity.commonEnum.Subject;

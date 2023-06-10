@@ -1,8 +1,8 @@
-package project.lesson.dto.studentPost;
+package project.lesson.dto.studentpost;
 
 import io.swagger.annotations.ApiModelProperty;
 import lombok.Data;
-import project.lesson.entity.studentPost.StudentPost;
+import project.lesson.entity.studentpost.StudentPost;
 import project.lesson.entity.commonEnum.OnOrOff;
 import project.lesson.entity.commonEnum.Subject;
 

@@ -8,7 +8,7 @@ import lombok.Builder;
 import lombok.Getter;
 import project.lesson.dto.studentpost.StudentPostResponseDto;
 import project.lesson.dto.teacherpost.TeacherPostResponseDto;
-import project.lesson.entity.StudentPost.StudentPost;
+import project.lesson.entity.studentpost.StudentPost;
 import project.lesson.entity.member.AgeGroup;
 import project.lesson.entity.member.Career;
 import project.lesson.entity.member.Gender;
