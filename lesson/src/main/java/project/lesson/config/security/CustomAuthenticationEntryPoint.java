@@ -10,16 +10,40 @@ import org.springframework.security.core.AuthenticationException;
 import org.springframework.security.web.AuthenticationEntryPoint;
 import org.springframework.stereotype.Component;
 
+import com.fasterxml.jackson.databind.ObjectMapper;
+
 @Component
 public class CustomAuthenticationEntryPoint implements AuthenticationEntryPoint {
 	@Override
 	public void commence(HttpServletRequest request, HttpServletResponse response,
 			AuthenticationException authException) throws IOException {
-		//ObjectMapper objectMapper = new ObjectMapper();
-		/*ExceptionMessage message = new ExceptionMessage(
+		System.out.println("여기까지가 끝인가보오");
+		ObjectMapper objectMapper = new ObjectMapper();
+		ExceptionMessage exceptionMessage = new ExceptionMessage(
 				authException.getClass().getSimpleName(),
-				"올바르지 않은 토큰입니다. 인증에 실패하였습니다."
-		);*/
-		response.sendError(HttpServletResponse.SC_UNAUTHORIZED, "올바르지 않은 토큰입니다. 인증에 실패하였습니다.");
+				"유효하지 않은 토큰입니다."
+		);
+		response.setContentType("json/application");
+		response.setCharacterEncoding("utf-8");
+		response.setStatus(HttpServletResponse.SC_UNAUTHORIZED);
+		response.getWriter().write(objectMapper.writeValueAsString(exceptionMessage));
+	}
+
+	class ExceptionMessage {
+		private String exception;
+		private String message;
+
+		public ExceptionMessage(String exception, String message) {
+			this.exception = exception;
+			this.message = message;
+		}
+
+		public String getException() {
+			return exception;
+		}
+
+		public String getMessage() {
+			return message;
+		}
 	}
 }
