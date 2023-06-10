@@ -1,4 +1,15 @@
-package project.lesson.entity.studentPost;
+package project.lesson.entity.StudentPost;
+
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.EnumType;
+import javax.persistence.Enumerated;
+import javax.persistence.FetchType;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 
 import lombok.Builder;
 import lombok.Getter;
@@ -7,8 +18,6 @@ import project.lesson.entity.base.BaseEntity;
 import project.lesson.entity.commonEnum.OnOrOff;
 import project.lesson.entity.commonEnum.Subject;
 import project.lesson.entity.member.Member;
-
-import javax.persistence.*;
 
 @Entity
 @Getter

@@ -1,20 +1,23 @@
 package project.lesson.repository;
 
-import com.querydsl.core.types.dsl.BooleanExpression;
-import com.querydsl.jpa.impl.JPAQueryFactory;
+import static project.lesson.entity.studentPost.QStudentPost.*;
+
+import java.util.List;
+
+import javax.persistence.EntityManager;
+
 import org.apache.commons.lang3.StringUtils;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageImpl;
 import org.springframework.data.domain.Pageable;
+
+import com.querydsl.core.types.dsl.BooleanExpression;
+import com.querydsl.jpa.impl.JPAQueryFactory;
+
+import project.lesson.entity.StudentPost.StudentPost;
 import project.lesson.entity.commonClass.SearchCondition;
 import project.lesson.entity.commonEnum.SearchType;
 import project.lesson.entity.commonEnum.Subject;
-import project.lesson.entity.studentPost.StudentPost;
-
-import javax.persistence.EntityManager;
-import java.util.List;
-
-import static project.lesson.entity.studentPost.QStudentPost.studentPost;
 
 public class StudentPostRepositoryImpl implements StudentPostCustomRepository{
 

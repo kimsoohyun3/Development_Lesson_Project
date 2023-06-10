@@ -8,12 +8,12 @@ import lombok.Builder;
 import lombok.Getter;
 import project.lesson.dto.studentpost.StudentPostResponseDto;
 import project.lesson.dto.teacherpost.TeacherPostResponseDto;
+import project.lesson.entity.StudentPost.StudentPost;
 import project.lesson.entity.member.AgeGroup;
 import project.lesson.entity.member.Career;
 import project.lesson.entity.member.Gender;
 import project.lesson.entity.member.Member;
 import project.lesson.entity.member.UserClassification;
-import project.lesson.entity.studentPost.StudentPost;
 import project.lesson.entity.teacherPost.TeacherPost;
 
 @Getter
