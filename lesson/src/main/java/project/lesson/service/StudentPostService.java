@@ -1,24 +1,23 @@
 package project.lesson.service;
 
-import lombok.RequiredArgsConstructor;
+import java.util.List;
+import java.util.stream.Collectors;
+
+import javax.transaction.Transactional;
+
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
-import project.lesson.dto.studentPost.StudentPostResponseDto;
+
+import lombok.RequiredArgsConstructor;
+import project.lesson.dto.studentpost.StudentPostResponseDto;
 import project.lesson.dto.studentPost.StudentPostSaveRequestDto;
 import project.lesson.dto.studentPost.StudentPostUpdateRequestDto;
-import project.lesson.dto.teacherPost.TeacherPostResponseDto;
 import project.lesson.entity.commonClass.SearchCondition;
 import project.lesson.entity.studentPost.StudentPost;
-import project.lesson.entity.teacherPost.TeacherPost;
 import project.lesson.exception.common.CResourceNotExistException;
 import project.lesson.repository.StudentPostRepository;
 import project.lesson.repository.StudentPostRepositoryImpl;
-import project.lesson.repository.TeacherPostRepositoryImpl;
-
-import javax.transaction.Transactional;
-import java.util.List;
-import java.util.stream.Collectors;
 
 @Service
 @Transactional

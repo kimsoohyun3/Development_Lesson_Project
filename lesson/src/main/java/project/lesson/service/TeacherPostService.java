@@ -10,6 +10,10 @@ import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
 import lombok.RequiredArgsConstructor;
+import project.lesson.dto.teacherpost.MyTeacherPostResponseDto;
+import project.lesson.dto.teacherpost.TeacherPostResponseDto;
+import project.lesson.dto.teacherpost.TeacherPostSaveRequestDto;
+import project.lesson.dto.teacherpost.TeacherPostUpdateRequestDto;
 import project.lesson.entity.commonClass.SearchCondition;
 import project.lesson.entity.member.Member;
 import project.lesson.entity.teacherPost.TeacherPost;
@@ -28,12 +32,12 @@ public class TeacherPostService {
 	private final MemberRepository memberRepository;
 
 	// 게시물 등록
-	public Long savePost(project.lesson.dto.teacherPost.TeacherPostSaveRequestDto requestDto) {
+	public Long savePost(TeacherPostSaveRequestDto requestDto) {
 		return teacherPostRepository.save(requestDto.toEntity()).getId();
 	}
 
 	// 게시물 수정
-	public Long updatePost(Long postId, project.lesson.dto.teacherPost.TeacherPostUpdateRequestDto requestDto) {
+	public Long updatePost(Long postId, TeacherPostUpdateRequestDto requestDto) {
 		TeacherPost teacherPost = teacherPostRepository.findById(postId)
 				.orElseThrow(() -> new CResourceNotExistException());
 
@@ -52,30 +56,30 @@ public class TeacherPostService {
 	}
 
 	// 게시물 리스트 조회(검색)
-	public List<project.lesson.dto.teacherPost.TeacherPostResponseDto> findPosts(SearchCondition searchCondition, Pageable pageable) {
+	public List<TeacherPostResponseDto> findPosts(SearchCondition searchCondition, Pageable pageable) {
 		Page<TeacherPost> entityList = teacherPostRepositoryImpl.searchPage(searchCondition, pageable);
 
-		List<project.lesson.dto.teacherPost.TeacherPostResponseDto> dtoList = entityList.stream()
-				.map(m -> new project.lesson.dto.teacherPost.TeacherPostResponseDto(m))
+		List<TeacherPostResponseDto> dtoList = entityList.stream()
+				.map(m -> new TeacherPostResponseDto(m))
 				.collect(Collectors.toList());
 
 		return dtoList;
 	}
 
 	// 게시물 ID로 게시물 단건 조회
-	public project.lesson.dto.teacherPost.TeacherPostResponseDto findPost(long postId) {
+	public TeacherPostResponseDto findPost(long postId) {
 		TeacherPost entity = teacherPostRepository.findById(postId).orElseThrow(() -> new CResourceNotExistException());
 		;
 
-		return new project.lesson.dto.teacherPost.TeacherPostResponseDto(entity);
+		return new TeacherPostResponseDto(entity);
 	}
 
-	public project.lesson.dto.teacherPost.MyTeacherPostResponseDto findMyPosts(String memberId) {
+	public MyTeacherPostResponseDto findMyPosts(String memberId) {
 		Member member = memberRepository.findById(memberId)
 				.orElseThrow(() -> new IllegalArgumentException("존재하지 않는 ID입니다."));
 
 		List<TeacherPost> myPosts = teacherPostRepository.findByMember(member);
 
-		return new project.lesson.dto.teacherPost.MyTeacherPostResponseDto(myPosts);
+		return new MyTeacherPostResponseDto(myPosts);
 	}
 }

@@ -1,4 +1,4 @@
-package project.lesson.dto.teacherPost;
+package project.lesson.dto.teacherpost;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;

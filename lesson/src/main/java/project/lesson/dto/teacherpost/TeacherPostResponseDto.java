@@ -1,13 +1,13 @@
-package project.lesson.dto.studentPost;
+package project.lesson.dto.teacherpost;
 
 import io.swagger.annotations.ApiModelProperty;
 import lombok.Data;
-import project.lesson.entity.studentPost.StudentPost;
 import project.lesson.entity.commonEnum.OnOrOff;
+import project.lesson.entity.teacherPost.TeacherPost;
 import project.lesson.entity.commonEnum.Subject;
 
 @Data
-public class StudentPostResponseDto {
+public class TeacherPostResponseDto {
 
     @ApiModelProperty(example = "PK", value = "PK")
     private Long id;
@@ -28,7 +28,7 @@ public class StudentPostResponseDto {
     private OnOrOff onOrOff;
 
     // entity 를 dto 변환
-    public StudentPostResponseDto(StudentPost entity) {
+    public TeacherPostResponseDto(TeacherPost entity) {
         this.id = entity.getId();
         this.title = entity.getTitle();
         this.content = entity.getContent();

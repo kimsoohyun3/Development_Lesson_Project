@@ -23,6 +23,9 @@ public class StudentPost extends BaseEntity {
     @Column(nullable = false)
     private String title; // 제목
 
+    @ManyToOne(fetch = FetchType.LAZY)
+    private Member writer; // 작성자
+
     @Column(nullable = false)
     private String content; // 내용
 
