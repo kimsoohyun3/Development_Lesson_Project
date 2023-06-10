@@ -13,13 +13,13 @@ import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.data.domain.Pageable;
 import org.springframework.test.context.junit.jupiter.SpringExtension;
 
-import project.lesson.dto.studentPost.StudentPostSaveRequestDto;
 import project.lesson.dto.studentPost.StudentPostUpdateRequestDto;
 import project.lesson.dto.studentpost.StudentPostResponseDto;
+import project.lesson.dto.studentpost.StudentPostSaveRequestDto;
 import project.lesson.entity.commonClass.SearchCondition;
 import project.lesson.entity.commonEnum.OnOrOff;
 import project.lesson.entity.commonEnum.Subject;
-import project.lesson.entity.studentPost.StudentPost;
+import project.lesson.entity.studentpost.StudentPost;
 import project.lesson.repository.StudentPostRepository;
 
 @ExtendWith(SpringExtension.class)

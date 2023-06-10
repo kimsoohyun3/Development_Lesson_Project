@@ -1,15 +1,15 @@
-package project.lesson.dto.studentPost;
+package project.lesson.dto.studentpost;
+
+import javax.validation.constraints.Max;
+import javax.validation.constraints.NotNull;
 
 import io.swagger.annotations.ApiModelProperty;
 import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
-import project.lesson.entity.studentPost.StudentPost;
 import project.lesson.entity.commonEnum.OnOrOff;
 import project.lesson.entity.commonEnum.Subject;
-
-import javax.validation.constraints.Max;
-import javax.validation.constraints.NotNull;
+import project.lesson.entity.studentpost.StudentPost;
 
 @Data
 @NoArgsConstructor
