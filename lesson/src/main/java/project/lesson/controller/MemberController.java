@@ -9,6 +9,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestHeader;
 import org.springframework.web.bind.annotation.RestController;
 
 import io.swagger.annotations.Api;
@@ -20,15 +21,18 @@ import project.lesson.dto.member.MemberSaveRequestDto;
 import project.lesson.dto.member.MemberSaveResponseDto;
 import project.lesson.dto.member.ModifyMemberPasswordRequestDto;
 import project.lesson.service.MemberService;
+import project.lesson.service.TokenProvider;
 
 @Api(tags = {"회원 관련 API"})
 @RestController
 public class MemberController {
 	private final MemberService memberService;
+	private final TokenProvider tokenProvider;
 
 	@Autowired
-	public MemberController(MemberService memberService) {
+	public MemberController(MemberService memberService, TokenProvider tokenProvider) {
 		this.memberService = memberService;
+		this.tokenProvider = tokenProvider;
 	}
 
 	@ApiOperation(
@@ -47,18 +51,37 @@ public class MemberController {
 		return ResponseEntity.ok().body(memberService.joinMember(memberSaveRequestDto));
 	}
 
-	@GetMapping("/member/info/{memberId}")
+	@ApiOperation(
+			value = "내정보 불러오기",
+			notes = "내정보를 불러옵니다."
+	)
+	@ApiResponses(
+			{
+					@ApiResponse(code = 200, message = "내정보", response = MemberInfoResponseDto.class)
+			}
+	)
+	@GetMapping("/member/info")
 	public ResponseEntity<MemberInfoResponseDto> findMemberInfo(
-			@PathVariable("memberId") String memberId) {
-		return ResponseEntity.ok().body(memberService.findMemberInfo(memberId));
+			@RequestHeader("Authorization") String token) {
+		return ResponseEntity.ok()
+				.body(memberService.findMemberInfo(tokenProvider.validateAndGetUserId(token.substring(7))));
 	}
 
+	@ApiOperation(
+			value = "비밀번호 변경",
+			notes = "비밀번호를 변경합니다."
+	)
+	@ApiResponses(
+			{
+					@ApiResponse(code = 200, message = "변경된 비밀번호", response = String.class)
+			}
+	)
 	@PutMapping("member/modify-password/{memberId}")
 	public String modifyMemberPassword(
 			@PathVariable String memberId,
 			@RequestBody @Valid ModifyMemberPasswordRequestDto modifyMemberPasswordRequestDto
 	) {
-		return memberService.modifyMemberPassword(memberId,modifyMemberPasswordRequestDto);
+		return memberService.modifyMemberPassword(memberId, modifyMemberPasswordRequestDto);
 	}
 
 }

@@ -1,13 +1,20 @@
 package project.lesson.dto.member;
 
+import java.util.List;
+import java.util.stream.Collectors;
+
 import io.swagger.annotations.ApiModelProperty;
 import lombok.Builder;
 import lombok.Getter;
+import project.lesson.dto.studentpost.StudentPostResponseDto;
+import project.lesson.dto.teacherpost.TeacherPostResponseDto;
+import project.lesson.entity.StudentPost.StudentPost;
 import project.lesson.entity.member.AgeGroup;
 import project.lesson.entity.member.Career;
 import project.lesson.entity.member.Gender;
 import project.lesson.entity.member.Member;
 import project.lesson.entity.member.UserClassification;
+import project.lesson.entity.teacherPost.TeacherPost;
 
 @Getter
 public class MemberInfoResponseDto {
@@ -28,13 +35,19 @@ public class MemberInfoResponseDto {
 	@ApiModelProperty(example = "경력", value = "경력")
 	private Career career;
 
+	private List<StudentPostResponseDto> studentPostResponseDtos;
+
+	private List<TeacherPostResponseDto> teacherPostResponseDtos;
+
 	@Builder
 	public MemberInfoResponseDto(
 			String id, String password, String email,
 			String nickname, Gender gender,
 			UserClassification userClassification,
 			AgeGroup ageGroup,
-			Career career
+			Career career,
+			List<StudentPost> studentPosts,
+			List<TeacherPost> teacherPosts
 	) {
 		this.id = id;
 		this.password = password;
@@ -44,9 +57,18 @@ public class MemberInfoResponseDto {
 		this.userClassification = userClassification;
 		this.ageGroup = ageGroup;
 		this.career = career;
+		this.studentPostResponseDtos = studentPosts.stream().map(StudentPostResponseDto::new)
+				.collect(Collectors.toList());
+		this.teacherPostResponseDtos = teacherPosts.stream().map(TeacherPostResponseDto::new)
+				.collect(Collectors.toList());
+
 	}
 
-	public static MemberInfoResponseDto of(Member member) {
+	public static MemberInfoResponseDto of(
+			Member member,
+			List<StudentPost> studentPosts,
+			List<TeacherPost> teacherPosts
+	) {
 		return MemberInfoResponseDto.builder()
 				.id(member.getId())
 				.password(member.getPassword())
@@ -56,6 +78,8 @@ public class MemberInfoResponseDto {
 				.userClassification(member.getUserClassification())
 				.ageGroup(member.getAgeGroup())
 				.career(member.getCareer())
+				.studentPosts(studentPosts)
+				.teacherPosts(teacherPosts)
 				.build();
 	}
 }

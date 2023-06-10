@@ -14,6 +14,10 @@ import org.springframework.web.bind.annotation.RestController;
 
 import io.swagger.annotations.Api;
 import lombok.RequiredArgsConstructor;
+import project.lesson.dto.teacherpost.MyTeacherPostResponseDto;
+import project.lesson.dto.teacherpost.TeacherPostResponseDto;
+import project.lesson.dto.teacherpost.TeacherPostSaveRequestDto;
+import project.lesson.dto.teacherpost.TeacherPostUpdateRequestDto;
 import project.lesson.entity.commonClass.SearchCondition;
 import project.lesson.service.TeacherPostService;
 
@@ -27,13 +31,13 @@ public class TeacherPostController {
 
     // 게시물 등록
     @PostMapping(value = "/v1/teacherPost")
-    public Long savePost(@RequestBody project.lesson.dto.teacherPost.TeacherPostSaveRequestDto requestDto) {
+    public Long savePost(@RequestBody TeacherPostSaveRequestDto requestDto) {
         return teacherPostService.savePost(requestDto);
     }
 
     // 게시물 수정
     @PutMapping(value = "/v1/teacherPost/{postId}")
-    public Long updatePost(@PathVariable Long postId, @RequestBody project.lesson.dto.teacherPost.TeacherPostUpdateRequestDto requestDto) {
+    public Long updatePost(@PathVariable Long postId, @RequestBody TeacherPostUpdateRequestDto requestDto) {
         return teacherPostService.updatePost(postId, requestDto);
     }
 
@@ -47,18 +51,18 @@ public class TeacherPostController {
 
     // 게시물 리스트 조회(검색)
     @GetMapping(value = "/v1/teacherPosts")
-    public ResponseEntity<List<project.lesson.dto.teacherPost.TeacherPostResponseDto>> findPosts(SearchCondition searchCondition, Pageable pageable) {
+    public ResponseEntity<List<TeacherPostResponseDto>> findPosts(SearchCondition searchCondition, Pageable pageable) {
         return ResponseEntity.ok().body(teacherPostService.findPosts(searchCondition, pageable));
     }
 
     // 게시물 ID로 게시물 단건 조회
     @GetMapping(value = "/v1/teacherPost/{postId}")
-    public ResponseEntity<project.lesson.dto.teacherPost.TeacherPostResponseDto> findPost(@PathVariable long postId) {
+    public ResponseEntity<TeacherPostResponseDto> findPost(@PathVariable long postId) {
         return ResponseEntity.ok().body(teacherPostService.findPost(postId));
     }
 
 	@GetMapping("teacherPost/myPosts/{memberId}")
-	public ResponseEntity<project.lesson.dto.teacherPost.MyTeacherPostResponseDto> findMyPosts(@PathVariable("memberId") String memberId) {
+	public ResponseEntity<MyTeacherPostResponseDto> findMyPosts(@PathVariable("memberId") String memberId) {
 		return ResponseEntity.ok().body(teacherPostService.findMyPosts(memberId));
 	}
 }

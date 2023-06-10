@@ -1,4 +1,4 @@
-package project.lesson.dto.teacherPost;
+package project.lesson.dto.teacherpost;
 
 import java.util.List;
 import java.util.stream.Collectors;

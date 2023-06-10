@@ -1,5 +1,10 @@
 package project.lesson.service;
 
+import static org.junit.jupiter.api.Assertions.*;
+import static project.lesson.entity.commonEnum.SearchType.*;
+
+import java.util.List;
+
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
@@ -7,19 +12,15 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.data.domain.Pageable;
 import org.springframework.test.context.junit.jupiter.SpringExtension;
-import project.lesson.dto.studentPost.StudentPostResponseDto;
+
 import project.lesson.dto.studentPost.StudentPostSaveRequestDto;
 import project.lesson.dto.studentPost.StudentPostUpdateRequestDto;
+import project.lesson.dto.studentpost.StudentPostResponseDto;
 import project.lesson.entity.commonClass.SearchCondition;
-import project.lesson.entity.studentPost.StudentPost;
 import project.lesson.entity.commonEnum.OnOrOff;
 import project.lesson.entity.commonEnum.Subject;
+import project.lesson.entity.studentPost.StudentPost;
 import project.lesson.repository.StudentPostRepository;
-
-import java.util.List;
-
-import static org.junit.jupiter.api.Assertions.assertEquals;
-import static project.lesson.entity.commonEnum.SearchType.TITLE;
 
 @ExtendWith(SpringExtension.class)
 @SpringBootTest
