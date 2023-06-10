@@ -14,9 +14,9 @@ import org.springframework.web.bind.annotation.RestController;
 
 import io.swagger.annotations.Api;
 import lombok.RequiredArgsConstructor;
+import project.lesson.dto.studentPost.StudentPostResponseDto;
+import project.lesson.dto.studentPost.StudentPostSaveRequestDto;
 import project.lesson.dto.studentPost.StudentPostUpdateRequestDto;
-import project.lesson.dto.studentpost.StudentPostResponseDto;
-import project.lesson.dto.studentpost.StudentPostSaveRequestDto;
 import project.lesson.entity.commonClass.SearchCondition;
 import project.lesson.service.StudentPostService;
 

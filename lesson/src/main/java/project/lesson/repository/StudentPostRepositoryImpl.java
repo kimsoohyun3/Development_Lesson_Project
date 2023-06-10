@@ -1,6 +1,6 @@
 package project.lesson.repository;
 
-import static project.lesson.entity.studentPost.QStudentPost.*;
+import static project.lesson.entity.studentpost.QStudentPost.*;
 
 import java.util.List;
 

@@ -1,4 +1,4 @@
-package project.lesson.dto.studentpost;
+package project.lesson.dto.studentPost;
 
 import javax.validation.constraints.Max;
 import javax.validation.constraints.NotNull;
