@@ -22,8 +22,9 @@ public class CustomAuthenticationEntryPoint implements AuthenticationEntryPoint 
 				authException.getClass().getSimpleName(),
 				"올바르지 않은 토큰입니다. 인증에 실패하였습니다."
 		);*/
-		response.setStatus(HttpServletResponse.SC_UNAUTHORIZED);
+		response.setStatus(401);
 		response.setCharacterEncoding("UTF-8");
-		response.getWriter().write("올바르지 않은 토큰입니다. 인증에 실패하였습니다.");
+		response.setContentType("application/json");
+		response.getWriter().write("{'msg':'올바르지 않은 토큰입니다. 인증에 실패하였습니다.'}");
 	}
 }
