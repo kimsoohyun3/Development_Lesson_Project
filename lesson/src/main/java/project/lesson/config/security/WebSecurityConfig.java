@@ -35,11 +35,14 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 				.authorizeRequests()
 				.antMatchers(
 						"/member/join",
-						"auth/sign-in"
+						"/auth/sign-in",
+						"/v2/api-docs",
+						"/swagger-resources/**",
+						"/swagger-ui.html",
+						"/webjars/**",
+						"/swagger/**"
 				)
 				.permitAll()
-				.anyRequest()
-				.authenticated()
 				.and()
 				.exceptionHandling()
 				.authenticationEntryPoint(new CustomAuthenticationEntryPoint());

@@ -76,12 +76,12 @@ public class MemberController {
 					@ApiResponse(code = 200, message = "변경된 비밀번호", response = String.class)
 			}
 	)
-	@PutMapping("member/modify-password/{memberId}")
+	@PutMapping("member/modify-password")
 	public String modifyMemberPassword(
-			@PathVariable String memberId,
+			@RequestHeader("Authorization") String token,
 			@RequestBody @Valid ModifyMemberPasswordRequestDto modifyMemberPasswordRequestDto
 	) {
-		return memberService.modifyMemberPassword(memberId, modifyMemberPasswordRequestDto);
+		return memberService.modifyMemberPassword(tokenProvider.validateAndGetUserId(token.substring(7)), modifyMemberPasswordRequestDto);
 	}
 
 }
