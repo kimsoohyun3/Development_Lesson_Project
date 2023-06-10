@@ -23,7 +23,7 @@ public class CustomAuthenticationEntryPoint implements AuthenticationEntryPoint 
 				"올바르지 않은 토큰입니다. 인증에 실패하였습니다."
 		);*/
 		response.setStatus(HttpServletResponse.SC_UNAUTHORIZED);
-		response.setContentType("text/plain");
+		response.setContentType("application/json");
 		response.setCharacterEncoding("UTF-8");
 		response.getWriter().write("올바르지 않은 토큰입니다. 인증에 실패하였습니다.");
 	}
