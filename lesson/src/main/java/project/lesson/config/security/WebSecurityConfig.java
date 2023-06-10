@@ -35,11 +35,9 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 				.authorizeRequests()
 				.antMatchers(
 						"/member/join",
-						"/api/v1/auth/**", "/",
-						"/v2/api-docs", "/swagger-resources/**", "/swagger-ui/index.html", "/swagger-ui.html",
-						"/webjars/**", "/swagger/**",
-						"/favicon.ico"
-				).permitAll()
+						"auth/sign-in"
+				)
+				.permitAll()
 				.anyRequest()
 				.authenticated()
 				.and()
@@ -52,6 +50,16 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 		);
 	}
 
+	@Override
+	public void configure(WebSecurity web) throws Exception {
+		web.ignoring().antMatchers(
+				"/v2/api-docs",
+				"/swagger-resources/**",
+				"/swagger-ui.html",
+				"/webjars/**",
+				"/swagger/**"
+		);
+	}
 
 	@Bean
 	public CorsConfigurationSource corsConfigurationSource() {
