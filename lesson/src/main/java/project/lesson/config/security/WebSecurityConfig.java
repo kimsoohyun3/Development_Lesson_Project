@@ -1,4 +1,4 @@
-package project.lesson.config;
+package project.lesson.config.security;
 
 import org.springframework.context.annotation.Bean;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
@@ -40,7 +40,10 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 						"/swagger-resources/**", "/auth/sign-in"
 				).permitAll()
 				.anyRequest()
-				.authenticated();
+				.authenticated()
+				.and()
+				.exceptionHandling()
+				.authenticationEntryPoint(new CustomAuthenticationEntryPoint());
 
 		http.addFilterAfter(
 				jwtAuthenticationFilter,
