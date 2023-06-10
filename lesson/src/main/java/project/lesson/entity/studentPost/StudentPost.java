@@ -18,7 +18,6 @@ import project.lesson.entity.base.BaseEntity;
 import project.lesson.entity.commonEnum.OnOrOff;
 import project.lesson.entity.commonEnum.Subject;
 import project.lesson.entity.member.Member;
-
 @Entity
 @Getter
 @NoArgsConstructor

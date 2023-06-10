@@ -5,7 +5,6 @@ import lombok.Data;
 import project.lesson.entity.StudentPost.StudentPost;
 import project.lesson.entity.commonEnum.OnOrOff;
 import project.lesson.entity.commonEnum.Subject;
-
 @Data
 public class StudentPostResponseDto {
 
