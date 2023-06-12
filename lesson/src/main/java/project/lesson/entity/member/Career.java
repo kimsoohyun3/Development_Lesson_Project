@@ -5,6 +5,7 @@ import java.util.Arrays;
 import com.fasterxml.jackson.annotation.JsonCreator;
 
 public enum Career {
+	NO_EXPERIENCE,
 	FIRST_TO_THIRD_GRADE,
 	THIRD_TO_FIFTH_GRADE,
 	FIFTH_TO_SEVENTH_GRADE,
