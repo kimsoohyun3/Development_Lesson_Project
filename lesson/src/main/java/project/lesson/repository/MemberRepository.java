@@ -10,4 +10,6 @@ import project.lesson.entity.member.Member;
 @Repository
 public interface MemberRepository extends JpaRepository<Member, String> {
 	Optional<Member> findById(String id);
+
+	Member findByNickname(String nickname);
 }

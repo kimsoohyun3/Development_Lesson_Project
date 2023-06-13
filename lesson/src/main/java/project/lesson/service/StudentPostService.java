@@ -14,7 +14,7 @@ import project.lesson.dto.studentPost.StudentPostResponseDto;
 import project.lesson.dto.studentPost.StudentPostSaveRequestDto;
 import project.lesson.dto.studentPost.StudentPostUpdateRequestDto;
 import project.lesson.entity.commonClass.SearchCondition;
-import project.lesson.entity.studentpost.StudentPost;
+import project.lesson.entity.studentPost.StudentPost;
 import project.lesson.exception.common.CResourceNotExistException;
 import project.lesson.repository.StudentPostRepository;
 import project.lesson.repository.StudentPostRepositoryImpl;

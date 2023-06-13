@@ -1,7 +1,5 @@
 package project.lesson.repository;
 
-import static project.lesson.entity.studentpost.QStudentPost.*;
-
 import java.util.List;
 
 import javax.persistence.EntityManager;
@@ -14,10 +12,12 @@ import org.springframework.data.domain.Pageable;
 import com.querydsl.core.types.dsl.BooleanExpression;
 import com.querydsl.jpa.impl.JPAQueryFactory;
 
-import project.lesson.entity.studentpost.StudentPost;
 import project.lesson.entity.commonClass.SearchCondition;
 import project.lesson.entity.commonEnum.SearchType;
 import project.lesson.entity.commonEnum.Subject;
+import project.lesson.entity.studentPost.StudentPost;
+
+import static project.lesson.entity.studentPost.QStudentPost.studentPost;
 
 public class StudentPostRepositoryImpl implements StudentPostCustomRepository{
 

@@ -11,7 +11,7 @@ import project.lesson.dto.member.MemberInfoResponseDto;
 import project.lesson.dto.member.MemberSaveRequestDto;
 import project.lesson.dto.member.MemberSaveResponseDto;
 import project.lesson.dto.member.ModifyMemberPasswordRequestDto;
-import project.lesson.entity.studentpost.StudentPost;
+import project.lesson.entity.studentPost.StudentPost;
 import project.lesson.entity.member.Member;
 import project.lesson.entity.member.UserClassification;
 import project.lesson.entity.teacherPost.TeacherPost;

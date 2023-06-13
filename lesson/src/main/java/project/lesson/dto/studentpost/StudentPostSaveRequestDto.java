@@ -6,13 +6,11 @@ import javax.validation.constraints.NotNull;
 import io.swagger.annotations.ApiModelProperty;
 import lombok.Builder;
 import lombok.Data;
-import lombok.NoArgsConstructor;
 import project.lesson.entity.commonEnum.OnOrOff;
 import project.lesson.entity.commonEnum.Subject;
-import project.lesson.entity.studentpost.StudentPost;
+import project.lesson.entity.studentPost.StudentPost;
 
 @Data
-@NoArgsConstructor
 public class StudentPostSaveRequestDto {
 
     @ApiModelProperty(example = "제목", value = "제목", required = true)
@@ -57,5 +55,3 @@ public class StudentPostSaveRequestDto {
                 .build();
     }
 }
-
-
