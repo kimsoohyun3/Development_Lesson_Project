@@ -2,6 +2,9 @@ package project.lesson.controller;
 
 import java.util.List;
 
+import io.swagger.annotations.ApiOperation;
+import io.swagger.annotations.ApiResponse;
+import io.swagger.annotations.ApiResponses;
 import org.springframework.data.domain.Pageable;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.DeleteMapping;
@@ -14,6 +17,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import io.swagger.annotations.Api;
 import lombok.RequiredArgsConstructor;
+import project.lesson.dto.studentPost.StudentPostResponseDto;
 import project.lesson.dto.teacherpost.MyTeacherPostResponseDto;
 import project.lesson.dto.teacherpost.TeacherPostResponseDto;
 import project.lesson.dto.teacherpost.TeacherPostSaveRequestDto;
@@ -29,19 +33,22 @@ public class TeacherPostController {
 	private final TeacherPostService teacherPostService;
 
 
-    // 게시물 등록
+    @ApiOperation(value = "게시물 등록", notes = "게시물 등록")
+    @ApiResponses({@ApiResponse(code = 200, message = "등록한 게시물 PK", response = Long.class)})
     @PostMapping(value = "/v1/teacherPost")
     public Long savePost(@RequestBody TeacherPostSaveRequestDto requestDto) {
         return teacherPostService.savePost(requestDto);
     }
 
-    // 게시물 수정
+    @ApiOperation(value = "게시물 수정", notes = "게시물 수정")
+    @ApiResponses({@ApiResponse(code = 200, message = "수정한 공지사항 PK", response = Long.class)})
     @PutMapping(value = "/v1/teacherPost/{postId}")
     public Long updatePost(@PathVariable Long postId, @RequestBody TeacherPostUpdateRequestDto requestDto) {
         return teacherPostService.updatePost(postId, requestDto);
     }
 
-    // 게시물 삭제
+    @ApiOperation(value = "게시물 삭제", notes = "게시물 삭제")
+    @ApiResponses({@ApiResponse(code = 200, message = "삭제한 공지사항 PK", response = Long.class)})
     @DeleteMapping("v1/teacherPost/{postId}")
     public Long deletePost(@PathVariable Long postId) {
         teacherPostService.deletePost(postId);
@@ -50,12 +57,15 @@ public class TeacherPostController {
 	}
 
     // 게시물 리스트 조회(검색)
+    @ApiOperation(value = "게시물 리스트 조회(검색)", notes = "게시물 리스트 조회(검색)")
+    @ApiResponses({@ApiResponse(code = 200, message = "게시물 리스트 조회(검색)", response = TeacherPostResponseDto.class, responseContainer = "List")})
     @GetMapping(value = "/v1/teacherPosts")
     public ResponseEntity<List<TeacherPostResponseDto>> findPosts(SearchCondition searchCondition, Pageable pageable) {
         return ResponseEntity.ok().body(teacherPostService.findPosts(searchCondition, pageable));
     }
 
-    // 게시물 ID로 게시물 단건 조회
+    @ApiOperation(value = "게시물 단건 조회", notes = "게시물 단건 조회")
+    @ApiResponses({@ApiResponse(code = 200, message = "게시물 단건 조회", response = TeacherPostResponseDto.class)})
     @GetMapping(value = "/v1/teacherPost/{postId}")
     public ResponseEntity<TeacherPostResponseDto> findPost(@PathVariable long postId) {
         return ResponseEntity.ok().body(teacherPostService.findPost(postId));

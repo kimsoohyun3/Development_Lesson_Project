@@ -21,7 +21,7 @@ public class TokenProvider {
 		return Jwts.builder()
 				.signWith(SignatureAlgorithm.HS512, SECRET_KEY)
 				.setSubject(member.getId())
-				.setIssuedAt(new Date())
+				.setIssuedAt(new Date(System.currentTimeMillis()))
 				.setExpiration(expiryDate)
 				.compact();
 
