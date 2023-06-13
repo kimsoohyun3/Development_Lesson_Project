@@ -68,6 +68,22 @@ public class MemberController {
 	}
 
 	@ApiOperation(
+			value = "아이디로 내정보 불러오기",
+			notes = "아이디로 내정보를 불러옵니다."
+	)
+	@ApiResponses(
+			{
+					@ApiResponse(code = 200, message = "내정보", response = MemberInfoResponseDto.class)
+			}
+	)
+	@GetMapping("/member/info/{memberId}")
+	public ResponseEntity<MemberInfoResponseDto> findMemberInfoByMemberId(
+			@PathVariable String memberId) {
+		return ResponseEntity.ok()
+				.body(memberService.findMemberInfo(memberId));
+	}
+
+	@ApiOperation(
 			value = "비밀번호 변경",
 			notes = "비밀번호를 변경합니다."
 	)
@@ -81,7 +97,8 @@ public class MemberController {
 			@RequestHeader("Authorization") String token,
 			@RequestBody @Valid ModifyMemberPasswordRequestDto modifyMemberPasswordRequestDto
 	) {
-		return memberService.modifyMemberPassword(tokenProvider.validateAndGetUserId(token.substring(7)), modifyMemberPasswordRequestDto);
+		return memberService.modifyMemberPassword(tokenProvider.validateAndGetUserId(token.substring(7)),
+				modifyMemberPasswordRequestDto);
 	}
 
 }
