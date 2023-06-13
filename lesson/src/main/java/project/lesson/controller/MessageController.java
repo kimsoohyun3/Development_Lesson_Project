@@ -30,7 +30,8 @@ public class MessageController {
     @PostMapping("/v1/message")
     public ResponseEntity<MessageDto> sendMessage(@RequestHeader("Authorization") String token, @RequestBody MessageDto messageDto) {
         Member member = memberRepository.findById(tokenProvider.validateAndGetUserId(token)).orElseThrow(() -> { return new IllegalArgumentException("유저를 찾을 수 없습니다."); });
-        messageDto.setSenderName(member.getNickname());
+        messageDto.setSenderId(member.getId());
+        messageDto.setSenderNickname(member.getNickname());
 
         return ResponseEntity.ok().body(messageService.write(messageDto));
     }

@@ -12,6 +12,7 @@ import project.lesson.repository.MessageRepository;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
 
 
 @Service
@@ -24,8 +25,8 @@ public class MessageService {
 
     // 쪽지 보내기
     public MessageDto write(MessageDto messageDto) {
-        Member receiver = memberRepository.findByNickname(messageDto.getReceiverName());
-        Member sender = memberRepository.findByNickname(messageDto.getSenderName());
+        Member receiver = memberRepository.findByNickname(messageDto.getReceiverNickname());
+        Member sender = memberRepository.findByNickname(messageDto.getSenderNickname());
 
         Message message = new Message(messageDto.getTitle(), messageDto.getContent(), sender, receiver, false, false);
         messageRepository.save(message);

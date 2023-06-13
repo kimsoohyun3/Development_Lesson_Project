@@ -68,5 +68,4 @@ public class StudentPost extends BaseEntity {
         this.area = area;
         this.onOrOff = onOrOff;
     }
-
 }

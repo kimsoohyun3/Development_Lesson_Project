@@ -1,4 +1,4 @@
-package project.lesson.entity.StudentPost;
+package project.lesson.entity.studentPost;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
