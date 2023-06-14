@@ -1,5 +1,6 @@
 package project.lesson.entity.teacherPost;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -19,9 +20,6 @@ public class TeacherPost extends BaseEntity {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "teacherPost_id")
     private Long id;
-
-    @ManyToOne(fetch = FetchType.LAZY)
-    private Member writer; // 작성자
 
     @Column(nullable = false)
     private String title; // 제목
@@ -45,12 +43,13 @@ public class TeacherPost extends BaseEntity {
     private Member member; // 회원
 
     @Builder
-    public TeacherPost(String title, String content, Subject subject, String area, OnOrOff onOrOff) {
+    public TeacherPost(String title, String content, Subject subject, String area, OnOrOff onOrOff, Member member) {
         this.title = title;
         this.content = content;
         this.subject = subject;
         this.area = area;
         this.onOrOff = onOrOff;
+        this.member = member;
     }
 
     public void updatePost(String title, String content, Subject subject, String area, OnOrOff onOrOff) {

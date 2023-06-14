@@ -5,6 +5,7 @@ import java.util.stream.Collectors;
 
 import javax.transaction.Transactional;
 
+import org.hibernate.Hibernate;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
@@ -69,7 +70,6 @@ public class TeacherPostService {
 	// 게시물 ID로 게시물 단건 조회
 	public TeacherPostResponseDto findPost(long postId) {
 		TeacherPost entity = teacherPostRepository.findById(postId).orElseThrow(() -> new CResourceNotExistException());
-		;
 
 		return new TeacherPostResponseDto(entity);
 	}

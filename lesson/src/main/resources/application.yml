@@ -29,6 +29,9 @@ spring:
       mail.smtp.ssl.enable: true
       mail.smtp.ssl.trust: smtp.naver.com
       mail.smtp.starttls.enable: true
+  jackson:
+    serialization:
+      fail-on-empty-beans: false
 
 logging:
   level:
