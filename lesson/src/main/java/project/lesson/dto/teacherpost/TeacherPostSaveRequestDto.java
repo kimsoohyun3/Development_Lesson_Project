@@ -5,6 +5,7 @@ import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 import project.lesson.entity.commonEnum.OnOrOff;
+import project.lesson.entity.member.Member;
 import project.lesson.entity.teacherPost.TeacherPost;
 import project.lesson.entity.commonEnum.Subject;
 
@@ -37,6 +38,9 @@ public class TeacherPostSaveRequestDto {
     @NotNull(message = "과외 온 / 오프 여부를 입력해주세요")
     private OnOrOff onOrOff;
 
+    @ApiModelProperty(example = "회원", value = "회원")
+    private Member member;
+
     @Builder
     public TeacherPostSaveRequestDto(String title, String content, Subject subject, String area, OnOrOff onOrOff) {
         this.title = title;
@@ -54,6 +58,7 @@ public class TeacherPostSaveRequestDto {
                 .subject(subject)
                 .area(area)
                 .onOrOff(onOrOff)
+                .member((member))
                 .build();
     }
 }

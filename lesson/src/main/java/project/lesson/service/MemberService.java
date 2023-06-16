@@ -66,7 +66,7 @@ public class MemberService {
 		if (userClassification == UserClassification.STUDENT) {
 			studentPosts = studentPostRepository.findByWriter(findMember);
 		} else {
-			teacherPosts = teacherPostRepository.findByWriter(findMember);
+			teacherPosts = teacherPostRepository.findByMember(findMember);
 		}
 
 		return MemberInfoResponseDto.of(findMember, studentPosts, teacherPosts);
