@@ -1,4 +1,4 @@
-package project.lesson.entity.StudentPost;
+package project.lesson.entity.studentPost;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -68,4 +68,5 @@ public class StudentPost extends BaseEntity {
         this.area = area;
         this.onOrOff = onOrOff;
     }
+
 }
