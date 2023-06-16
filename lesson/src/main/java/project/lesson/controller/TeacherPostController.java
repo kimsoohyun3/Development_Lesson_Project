@@ -7,13 +7,7 @@ import io.swagger.annotations.ApiResponse;
 import io.swagger.annotations.ApiResponses;
 import org.springframework.data.domain.Pageable;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.DeleteMapping;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.PutMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import io.swagger.annotations.Api;
 import lombok.RequiredArgsConstructor;
@@ -23,7 +17,10 @@ import project.lesson.dto.teacherpost.TeacherPostResponseDto;
 import project.lesson.dto.teacherpost.TeacherPostSaveRequestDto;
 import project.lesson.dto.teacherpost.TeacherPostUpdateRequestDto;
 import project.lesson.entity.commonClass.SearchCondition;
+import project.lesson.entity.member.Member;
+import project.lesson.repository.MemberRepository;
 import project.lesson.service.TeacherPostService;
+import project.lesson.service.TokenProvider;
 
 @Api(tags = {"과외 학생 구인 관련 API"})
 @RestController
@@ -31,12 +28,17 @@ import project.lesson.service.TeacherPostService;
 public class TeacherPostController {
 
 	private final TeacherPostService teacherPostService;
+    private final MemberRepository memberRepository;
+    private final TokenProvider tokenProvider;
 
 
     @ApiOperation(value = "게시물 등록", notes = "게시물 등록")
     @ApiResponses({@ApiResponse(code = 200, message = "등록한 게시물 PK", response = Long.class)})
     @PostMapping(value = "/v1/teacherPost")
-    public Long savePost(@RequestBody TeacherPostSaveRequestDto requestDto) {
+    public Long savePost(@RequestHeader("Authorization") String token, @RequestBody TeacherPostSaveRequestDto requestDto) {
+        Member member = memberRepository.findById(tokenProvider.validateAndGetUserId(token)).orElseThrow(() -> { return new IllegalArgumentException("유저를 찾을 수 없습니다."); });
+        requestDto.setMember(member);
+
         return teacherPostService.savePost(requestDto);
     }
 
