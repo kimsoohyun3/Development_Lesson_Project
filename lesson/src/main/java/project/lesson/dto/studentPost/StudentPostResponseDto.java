@@ -2,6 +2,7 @@ package project.lesson.dto.studentPost;
 
 import io.swagger.annotations.ApiModelProperty;
 import lombok.Data;
+import project.lesson.entity.member.Member;
 import project.lesson.entity.studentPost.StudentPost;
 import project.lesson.entity.commonEnum.OnOrOff;
 import project.lesson.entity.commonEnum.Subject;
@@ -27,6 +28,9 @@ public class StudentPostResponseDto {
     @ApiModelProperty(example = "과외 온 / 오프 여부", value = "과외 온 / 오프 여부")
     private OnOrOff onOrOff;
 
+    @ApiModelProperty(example = "회원", value = "회원")
+    private Member member;
+
     // entity 를 dto 변환
     public StudentPostResponseDto(StudentPost entity) {
         this.id = entity.getId();
@@ -35,5 +39,6 @@ public class StudentPostResponseDto {
         this.subject = entity.getSubject();
         this.area = entity.getArea();
         this.onOrOff = entity.getOnOrOff();
+        this.member = entity.getMember();
     }
 }
