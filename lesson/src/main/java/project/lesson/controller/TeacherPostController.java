@@ -44,14 +44,14 @@ public class TeacherPostController {
 
     @ApiOperation(value = "게시물 수정", notes = "게시물 수정")
     @ApiResponses({@ApiResponse(code = 200, message = "수정한 공지사항 PK", response = Long.class)})
-    @PutMapping(value = "/ㅋ")
+    @PutMapping(value = "/v1/teacherPost/{postId}")
     public Long updatePost(@PathVariable Long postId, @RequestBody TeacherPostUpdateRequestDto requestDto) {
         return teacherPostService.updatePost(postId, requestDto);
     }
 
     @ApiOperation(value = "게시물 삭제", notes = "게시물 삭제")
     @ApiResponses({@ApiResponse(code = 200, message = "삭제한 공지사항 PK", response = Long.class)})
-    @DeleteMapping("v1/teacherPost/{postId}")
+    @DeleteMapping("/v1/teacherPost/{postId}")
     public Long deletePost(@PathVariable Long postId) {
         teacherPostService.deletePost(postId);
 
