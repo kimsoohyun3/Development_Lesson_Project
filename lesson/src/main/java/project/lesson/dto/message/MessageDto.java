@@ -12,6 +12,9 @@ import javax.validation.constraints.NotNull;
 @NoArgsConstructor
 public class MessageDto {
 
+    @ApiModelProperty(example = "쪽지 PK", value = "쪽지 PK", required = true)
+    private Long messageId;
+
     @ApiModelProperty(example = "제목", value = "제목", required = true)
     @NotNull(message = "제목을 입력해주세요")
     @Max(value = 110, message = "제목의 Byte 길이가 110 이하여야 합니다")
@@ -38,6 +41,7 @@ public class MessageDto {
 
     // entity 를 dto 변환
     public MessageDto(Message entity) {
+        this.messageId = entity.getId();
         this.title = entity.getTitle();
         this.content = entity.getContent();
         this.senderId = entity.getSender().getId();
