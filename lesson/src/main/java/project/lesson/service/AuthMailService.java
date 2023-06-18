@@ -15,6 +15,8 @@ import org.springframework.stereotype.Service;
 
 import project.lesson.dto.authmail.AuthMailRequestDto;
 import project.lesson.dto.authmail.AuthMailResponseDto;
+import project.lesson.entity.member.Member;
+import project.lesson.repository.MemberRepository;
 
 @Service
 public class AuthMailService {
@@ -22,10 +24,12 @@ public class AuthMailService {
 	private final JavaMailSender javaMailSender;
 	@Value("${spring.mail.username}")
 	private String mailSenderAddr;
+	private final MemberRepository memberRepository;
 
 	@Autowired
-	public AuthMailService(JavaMailSender javaMailSender) {
+	public AuthMailService(JavaMailSender javaMailSender, MemberRepository memberRepository) {
 		this.javaMailSender = javaMailSender;
+		this.memberRepository = memberRepository;
 	}
 
 	private MimeMessage createMessage(String to, String certificationKey) throws
@@ -71,6 +75,25 @@ public class AuthMailService {
 		return message;
 	}
 
+	private MimeMessage createFindMemberIdMessage(String to) throws
+			MessagingException,
+			UnsupportedEncodingException {
+
+		Member findMember = memberRepository.findByEmail(to)
+				.orElseThrow(() -> new IllegalArgumentException("가입되지 않은 E-MAIL 입니다."));
+		MimeMessage message = javaMailSender.createMimeMessage();
+
+		message.addRecipients(Message.RecipientType.TO, to);
+		message.setSubject("과외구인사이트 아이디 찾기 메일");
+
+		String content = "";
+		content += "아이디 : " + findMember.getId();
+
+		message.setText(content, "UTF-8", "html");
+		message.setFrom(new InternetAddress(mailSenderAddr, "과외구인사이트"));
+		return message;
+	}
+
 	private String createCertificationKey() {
 		StringBuilder certificationKey = new StringBuilder();
 		Random random = new Random();
@@ -99,5 +122,13 @@ public class AuthMailService {
 		MimeMessage message = createMessage(authMailRequestDto.getEmail(), certificationKey);
 		javaMailSender.send(message);
 		return new AuthMailResponseDto(certificationKey);
+	}
+
+	public void sendFindMemberIdMail(String email) throws
+			MessagingException,
+			UnsupportedEncodingException {
+		String certificationKey = createCertificationKey();
+		MimeMessage message = createFindMemberIdMessage(email);
+		javaMailSender.send(message);
 	}
 }

@@ -1,6 +1,10 @@
 package project.lesson.controller;
 
+import java.io.UnsupportedEncodingException;
+
+import javax.mail.MessagingException;
 import javax.validation.Valid;
+import javax.validation.constraints.Email;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
@@ -20,6 +24,7 @@ import project.lesson.dto.member.MemberInfoResponseDto;
 import project.lesson.dto.member.MemberSaveRequestDto;
 import project.lesson.dto.member.MemberSaveResponseDto;
 import project.lesson.dto.member.ModifyMemberPasswordRequestDto;
+import project.lesson.service.AuthMailService;
 import project.lesson.service.MemberService;
 import project.lesson.service.TokenProvider;
 
@@ -28,11 +33,17 @@ import project.lesson.service.TokenProvider;
 public class MemberController {
 	private final MemberService memberService;
 	private final TokenProvider tokenProvider;
+	private final AuthMailService authMailService;
 
 	@Autowired
-	public MemberController(MemberService memberService, TokenProvider tokenProvider) {
+	public MemberController(
+			MemberService memberService,
+			TokenProvider tokenProvider,
+			AuthMailService authMailService
+	) {
 		this.memberService = memberService;
 		this.tokenProvider = tokenProvider;
+		this.authMailService = authMailService;
 	}
 
 	@ApiOperation(
@@ -68,6 +79,22 @@ public class MemberController {
 	}
 
 	@ApiOperation(
+			value = "아이디로 내정보 불러오기",
+			notes = "아이디로 내정보를 불러옵니다."
+	)
+	@ApiResponses(
+			{
+					@ApiResponse(code = 200, message = "내정보", response = MemberInfoResponseDto.class)
+			}
+	)
+	@GetMapping("/member/info/{memberId}")
+	public ResponseEntity<MemberInfoResponseDto> findMemberInfoByMemberId(
+			@PathVariable String memberId) {
+		return ResponseEntity.ok()
+				.body(memberService.findMemberInfo(memberId));
+	}
+
+	@ApiOperation(
 			value = "비밀번호 변경",
 			notes = "비밀번호를 변경합니다."
 	)
@@ -81,7 +108,27 @@ public class MemberController {
 			@RequestHeader("Authorization") String token,
 			@RequestBody @Valid ModifyMemberPasswordRequestDto modifyMemberPasswordRequestDto
 	) {
-		return memberService.modifyMemberPassword(tokenProvider.validateAndGetUserId(token.substring(7)), modifyMemberPasswordRequestDto);
+		return memberService.modifyMemberPassword(tokenProvider.validateAndGetUserId(token.substring(7)),
+				modifyMemberPasswordRequestDto);
 	}
 
+	@ApiOperation(
+			value = "이메일로 아이디를 찾습니다.",
+			notes = "이메일로 아이디를 찾습니다."
+	)
+	@ApiResponses(
+			{
+					@ApiResponse(code = 200, message = "변경된 비밀번호", response = String.class)
+			}
+	)
+	@GetMapping("/member/find/{email}")
+	public void findMemberIdByEmail(@PathVariable @Email(message = "올바른 이메일 형식이 아닙니다.") String email) {
+		try {
+			authMailService.sendFindMemberIdMail(email);
+		} catch (MessagingException e) {
+			throw new RuntimeException(e);
+		} catch (UnsupportedEncodingException e) {
+			throw new RuntimeException(e);
+		}
+	}
 }

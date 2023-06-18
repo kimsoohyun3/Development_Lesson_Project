@@ -42,6 +42,14 @@ public class MemberService {
 			throw new IllegalArgumentException("이미 존재하는 ID입니다.");
 		});
 
+		memberRepository.findByEmail(memberSaveRequestDto.getEmail()).ifPresent(member -> {
+			throw new IllegalArgumentException("이미 존재하는 이메일입니다.");
+		});
+
+		if (memberRepository.findByNickname(memberSaveRequestDto.getNickname()) != null) {
+			throw new IllegalArgumentException("이미 존재하는 닉네임입니다.");
+		}
+		
 		return MemberSaveResponseDto
 				.of(memberRepository.save(MemberSaveRequestDto.toEntity(memberSaveRequestDto)));
 	}
@@ -58,7 +66,7 @@ public class MemberService {
 		if (userClassification == UserClassification.STUDENT) {
 			studentPosts = studentPostRepository.findByWriter(findMember);
 		} else {
-			teacherPosts = teacherPostRepository.findByWriter(findMember);
+			teacherPosts = teacherPostRepository.findByMember(findMember);
 		}
 
 		return MemberInfoResponseDto.of(findMember, studentPosts, teacherPosts);

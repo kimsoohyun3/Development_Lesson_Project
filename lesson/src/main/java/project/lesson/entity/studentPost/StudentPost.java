@@ -53,12 +53,13 @@ public class StudentPost extends BaseEntity {
     private Member member; // 회원
 
     @Builder
-    public StudentPost(String title, String content, Subject subject, String area, OnOrOff onOrOff) {
+    public StudentPost(String title, String content, Subject subject, String area, OnOrOff onOrOff, Member member) {
         this.title = title;
         this.content = content;
         this.subject = subject;
         this.area = area;
         this.onOrOff = onOrOff;
+        this.member = member;
     }
 
     public void updatePost(String title, String content, Subject subject, String area, OnOrOff onOrOff) {
