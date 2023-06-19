@@ -29,7 +29,7 @@ public class MessageController {
     @ApiResponses({@ApiResponse(code = 200, message = "보낸 쪽지 정보", response = MessageDto.class)})
     @PostMapping("/v1/message")
     public ResponseEntity<MessageDto> sendMessage(@RequestHeader("Authorization") String token, @RequestBody MessageDto messageDto) {
-        Member member = memberRepository.findById(tokenProvider.validateAndGetUserId(token)).orElseThrow(() -> { return new IllegalArgumentException("유저를 찾을 수 없습니다."); });
+        Member member = memberRepository.findById(tokenProvider.validateAndGetUserId(token.substring(7))).orElseThrow(() -> { return new IllegalArgumentException("유저를 찾을 수 없습니다."); });
         messageDto.setSenderId(member.getId());
         messageDto.setSenderNickname(member.getNickname());
 
