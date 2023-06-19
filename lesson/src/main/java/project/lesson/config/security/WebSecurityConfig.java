@@ -37,6 +37,7 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 						"/member/join",
 						"/auth/**",
 						"/member/find/{email}",
+						"/member/info/{memberId}",
 						"/v1/teacherPost/{postId}",
 						"/teacherPost/myPosts/{memberId}",
 						"/v1/teacherPosts"
@@ -53,9 +54,9 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 				.exceptionHandling()
 				.accessDeniedHandler(new CustomAccessDeniedHandler());
 
-		http.addFilterBefore(
+		http.addFilterAfter(
 				jwtAuthenticationFilter,
-				UsernamePasswordAuthenticationFilter.class
+				CorsFilter.class
 		);
 	}
 
