@@ -45,8 +45,8 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 						"/v1/teacherPosts",
 						"/v1/studentPost/{postId}",
 						"/v1/studentPosts",
-						"/v1/message/received/{messageId}",
-						"/v1/message/sent/{messageId}"
+						"/v1/notice/**",
+						"/v1/notices"
 				)
 				.permitAll()
 				.anyRequest()
