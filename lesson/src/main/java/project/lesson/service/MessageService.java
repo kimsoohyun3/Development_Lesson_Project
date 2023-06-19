@@ -29,7 +29,7 @@ public class MessageService {
         Member sender = memberRepository.findByNickname(messageDto.getSenderNickname());
 
         Message message = new Message(messageDto.getTitle(), messageDto.getContent(), sender, receiver, false, false);
-        messageRepository.save(message);
+        message = messageRepository.save(message);
 
         return new MessageDto(message);
     }
