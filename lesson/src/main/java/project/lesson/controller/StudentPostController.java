@@ -34,7 +34,7 @@ public class StudentPostController {
     @ApiResponses({@ApiResponse(code = 200, message = "등록한 게시물 PK", response = Long.class)})
     @PostMapping(value = "/v1/studentPost")
     public Long savePost(@RequestHeader("Authorization") String token, @RequestBody StudentPostSaveRequestDto requestDto) {
-        Member member = memberRepository.findById(tokenProvider.validateAndGetUserId(token)).orElseThrow(() -> { return new IllegalArgumentException("유저를 찾을 수 없습니다."); });
+        Member member = memberRepository.findById(tokenProvider.validateAndGetUserId(token.substring(7))).orElseThrow(() -> { return new IllegalArgumentException("유저를 찾을 수 없습니다."); });
         requestDto.setMember(member);
 
         return studentPostService.savePost(requestDto);
