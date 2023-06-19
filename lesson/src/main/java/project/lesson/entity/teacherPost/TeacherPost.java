@@ -20,9 +20,6 @@ public class TeacherPost extends BaseEntity {
 	@Column(name = "teacherPost_id")
 	private Long id;
 
-	@ManyToOne(fetch = FetchType.LAZY)
-	private Member writer; // 작성자
-
 	@Column(nullable = false)
 	private String title; // 제목
 

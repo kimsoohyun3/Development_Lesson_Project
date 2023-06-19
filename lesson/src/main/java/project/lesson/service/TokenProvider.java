@@ -11,6 +11,7 @@ import io.jsonwebtoken.Claims;
 import io.jsonwebtoken.Jwts;
 import io.jsonwebtoken.SignatureAlgorithm;
 import project.lesson.entity.member.Member;
+import project.lesson.entity.member.Role;
 
 @Service
 public class TokenProvider {
@@ -21,6 +22,7 @@ public class TokenProvider {
 		return Jwts.builder()
 				.signWith(SignatureAlgorithm.HS512, SECRET_KEY)
 				.setSubject(member.getId())
+				.claim("role", member.getRole().toString())
 				.setIssuedAt(new Date(System.currentTimeMillis()))
 				.setExpiration(expiryDate)
 				.compact();
@@ -34,6 +36,15 @@ public class TokenProvider {
 				.getBody();
 
 		return claims.getSubject();
+	}
+
+	public String validateAndGetRole(String token) {
+		Claims claims = Jwts.parser()
+				.setSigningKey(SECRET_KEY)
+				.parseClaimsJws(token)
+				.getBody();
+
+		return (String)claims.get("role");
 	}
 
 }

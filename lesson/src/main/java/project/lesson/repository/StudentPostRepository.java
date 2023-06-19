@@ -10,5 +10,5 @@ import project.lesson.entity.member.Member;
 
 @Repository
 public interface StudentPostRepository extends JpaRepository<StudentPost, Long> {
-	List<StudentPost> findByWriter(Member member);
+	List<StudentPost> findByMember(Member member);
 }

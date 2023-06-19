@@ -64,7 +64,7 @@ public class MemberService {
 		List<TeacherPost> teacherPosts = new ArrayList<>();
 
 		if (userClassification == UserClassification.STUDENT) {
-			studentPosts = studentPostRepository.findByWriter(findMember);
+			studentPosts = studentPostRepository.findByMember(findMember);
 		} else {
 			teacherPosts = teacherPostRepository.findByMember(findMember);
 		}

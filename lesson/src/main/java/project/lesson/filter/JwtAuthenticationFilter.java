@@ -18,6 +18,7 @@ import org.springframework.stereotype.Component;
 import org.springframework.util.StringUtils;
 import org.springframework.web.filter.OncePerRequestFilter;
 
+import project.lesson.entity.member.Role;
 import project.lesson.service.TokenProvider;
 
 @Component
@@ -35,10 +36,11 @@ public class JwtAuthenticationFilter extends OncePerRequestFilter {
 			String token = parseBearerToken(request);
 			if (token != null && !token.equalsIgnoreCase("null")) {
 				String userId = tokenProvider.validateAndGetUserId(token);
+				String role = tokenProvider.validateAndGetRole(token);
 				AbstractAuthenticationToken authentication = new UsernamePasswordAuthenticationToken(
 						userId,
 						null,
-						AuthorityUtils.NO_AUTHORITIES
+						AuthorityUtils.createAuthorityList(role)
 				);
 				authentication.setDetails(new WebAuthenticationDetailsSource().buildDetails(request));
 				SecurityContext securityContext = SecurityContextHolder.createEmptyContext();

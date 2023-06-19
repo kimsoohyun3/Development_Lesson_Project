@@ -23,9 +23,9 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 	@Override
 	protected void configure(HttpSecurity http) throws Exception {
 		http
-				.csrf()
-				.disable()
 				.httpBasic()
+				.disable()
+				.csrf()
 				.disable()
 				.sessionManagement()
 				.sessionCreationPolicy(SessionCreationPolicy.STATELESS)
@@ -33,21 +33,21 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 				.authorizeRequests()
 				.antMatchers(
 						"/member/join",
-						"/auth/sign-in",
-						"/v2/api-docs",
-						"/swagger-resources/**",
-						"/swagger-ui.html",
-						"/webjars/**",
-						"/swagger/**"
+						"/auth/sign-in"
 				)
 				.permitAll()
+				.anyRequest()
+				.hasRole("USER")
 				.and()
 				.exceptionHandling()
-				.authenticationEntryPoint(new CustomAuthenticationEntryPoint());
+				.authenticationEntryPoint(new CustomAuthenticationEntryPoint())
+				.and()
+				.exceptionHandling()
+				.accessDeniedHandler(new CustomAccessDeniedHandler());
 
-		http.addFilterAfter(
+		http.addFilterBefore(
 				jwtAuthenticationFilter,
-				CorsFilter.class
+				UsernamePasswordAuthenticationFilter.class
 		);
 	}
 
@@ -55,8 +55,10 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 	public void configure(WebSecurity web) throws Exception {
 		web.ignoring().antMatchers(
 				"/v2/api-docs",
+				"/configuration/ui",
 				"/swagger-resources/**",
-				"/swagger-ui.html",
+				"/swagger-ui/**",
+				"/configuration/security",
 				"/webjars/**",
 				"/swagger/**"
 		);

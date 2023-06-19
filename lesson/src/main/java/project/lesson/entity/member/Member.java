@@ -49,6 +49,10 @@ public class Member extends BaseEntity {
 	@Enumerated(EnumType.STRING)
 	Career career;
 
+	@Column(name = "ROLE")
+	@Enumerated(EnumType.STRING)
+	Role role = Role.ROLE_USER;
+
 	@Builder
 	public Member(
 			String id, String password, String email,

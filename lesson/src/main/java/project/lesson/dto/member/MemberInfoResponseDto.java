@@ -12,6 +12,7 @@ import project.lesson.entity.member.AgeGroup;
 import project.lesson.entity.member.Career;
 import project.lesson.entity.member.Gender;
 import project.lesson.entity.member.Member;
+import project.lesson.entity.member.Role;
 import project.lesson.entity.member.UserClassification;
 import project.lesson.entity.studentPost.StudentPost;
 import project.lesson.entity.teacherPost.TeacherPost;
@@ -35,6 +36,9 @@ public class MemberInfoResponseDto {
 	@ApiModelProperty(example = "경력", value = "경력")
 	private Career career;
 
+	@ApiModelProperty(example = "권한", value = "권한")
+	private String role;
+
 	private List<StudentPostResponseDto> studentPostResponseDtos;
 
 	private List<TeacherPostResponseDto> teacherPostResponseDtos;
@@ -47,7 +51,8 @@ public class MemberInfoResponseDto {
 			AgeGroup ageGroup,
 			Career career,
 			List<StudentPost> studentPosts,
-			List<TeacherPost> teacherPosts
+			List<TeacherPost> teacherPosts,
+			String role
 	) {
 		this.id = id;
 		this.password = password;
@@ -61,6 +66,7 @@ public class MemberInfoResponseDto {
 				.collect(Collectors.toList());
 		this.teacherPostResponseDtos = teacherPosts.stream().map(TeacherPostResponseDto::new)
 				.collect(Collectors.toList());
+		this.role = role;
 
 	}
 
@@ -80,6 +86,7 @@ public class MemberInfoResponseDto {
 				.career(member.getCareer())
 				.studentPosts(studentPosts)
 				.teacherPosts(teacherPosts)
+				.role(member.getRole().name())
 				.build();
 	}
 }
