@@ -38,9 +38,11 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 						"/member/info/{memberId}",
 						"/v1/teacherPost/{postId}",
 						"/teacherPost/myPosts/{memberId}",
-						"/v1/teacherPosts"
-						, "/v1/studentPost/{postId}"
-						, "/v1/studentPosts"
+						"/v1/teacherPosts",
+						"/v1/studentPost/{postId}",
+						"/v1/studentPosts",
+						"/v1/message/received/{messageId}",
+						"/v1/message/sent/{messageId}"
 				)
 				.permitAll()
 				.anyRequest()
@@ -52,9 +54,9 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 				.exceptionHandling()
 				.accessDeniedHandler(new CustomAccessDeniedHandler());
 
-		http.addFilterAfter(
+		http.addFilterBefore(
 				jwtAuthenticationFilter,
-				CorsFilter.class
+				UsernamePasswordAuthenticationFilter.class
 		);
 	}
 
