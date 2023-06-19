@@ -28,14 +28,20 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 				.httpBasic()
 				.disable()
 				.csrf()
-				.and()
+				.disable()
 				.sessionManagement()
 				.sessionCreationPolicy(SessionCreationPolicy.STATELESS)
 				.and()
 				.authorizeRequests()
 				.antMatchers(
 						"/member/join",
-						"/auth/sign-in"
+						"/auth/**",
+						"/member/find/{email}",
+						"/v1/teacherPost/{postId}",
+						"/teacherPost/myPosts/{memberId}",
+						"/v1/teacherPosts"
+						, "/v1/studentPost/{postId}"
+						, "/v1/studentPosts"
 				)
 				.permitAll()
 				.anyRequest()
