@@ -14,7 +14,6 @@ public class CustomAuthenticationEntryPoint implements AuthenticationEntryPoint 
 	@Override
 	public void commence(HttpServletRequest request, HttpServletResponse response,
 			AuthenticationException authException) throws IOException {
-		System.out.println("여기까지가 끝인가보오");
 		ObjectMapper objectMapper = new ObjectMapper();
 		ExceptionMessage exceptionMessage = new ExceptionMessage(
 				authException.getClass().getSimpleName(),

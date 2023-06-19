@@ -17,7 +17,6 @@ public class CustomAccessDeniedHandler implements AccessDeniedHandler {
 	public void handle(HttpServletRequest request, HttpServletResponse response,
 			AccessDeniedException accessDeniedException) throws IOException, ServletException {
 
-		System.out.println("여기까지가 끝인가보오");
 		ObjectMapper objectMapper = new ObjectMapper();
 		CustomAccessDeniedHandler.ExceptionMessage exceptionMessage = new CustomAccessDeniedHandler.ExceptionMessage(
 				accessDeniedException.getClass().getSimpleName(),
