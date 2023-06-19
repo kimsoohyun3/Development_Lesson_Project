@@ -40,7 +40,7 @@ public class MessageController {
     @ApiResponses({@ApiResponse(code = 200, message = "받은 편지함", response = MessageDto.class, responseContainer = "List")})
     @GetMapping("/v1/messages/received")
     public ResponseEntity<List<MessageDto>> getReceivedMessages(@RequestHeader("Authorization") String token) {
-        Member member = memberRepository.findById(tokenProvider.validateAndGetUserId(token)).orElseThrow(() -> { return new IllegalArgumentException("유저를 찾을 수 없습니다."); });
+        Member member = memberRepository.findById(tokenProvider.validateAndGetUserId(token.substring(7))).orElseThrow(() -> { return new IllegalArgumentException("유저를 찾을 수 없습니다."); });
 
         return ResponseEntity.ok().body(messageService.receivedMessages(member));
     }
@@ -49,7 +49,7 @@ public class MessageController {
     @ApiResponses({@ApiResponse(code = 200, message = "받은 편지 삭제 결과", response = Object.class)})
     @DeleteMapping("/v1/message/received/{messageId}")
     public Object deleteReceivedMessage(@RequestHeader("Authorization") String token, @PathVariable Long messageId) {
-        Member member = memberRepository.findById(tokenProvider.validateAndGetUserId(token)).orElseThrow(() -> { return new IllegalArgumentException("유저를 찾을 수 없습니다."); });
+        Member member = memberRepository.findById(tokenProvider.validateAndGetUserId(token.substring(7))).orElseThrow(() -> { return new IllegalArgumentException("유저를 찾을 수 없습니다."); });
 
         return ResponseEntity.ok().body(messageService.deleteMessageByReceiver(messageId, member));
     }
