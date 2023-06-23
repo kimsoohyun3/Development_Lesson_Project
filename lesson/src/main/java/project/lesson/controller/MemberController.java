@@ -101,7 +101,7 @@ public class MemberController {
 	)
 	@ApiResponses(
 			{
-					@ApiResponse(code = 200, message = "변경된 비밀번호", response = String.class)
+					@ApiResponse(code = 200, message = "변경된 사용자 아이디", response = String.class)
 			}
 	)
 	@PutMapping("member/modify-password")
@@ -119,7 +119,7 @@ public class MemberController {
 	)
 	@ApiResponses(
 			{
-					@ApiResponse(code = 200, message = "변경된 비밀번호", response = String.class)
+					@ApiResponse(code = 200, message = "변경된 사용자 아이디", response = String.class)
 			}
 	)
 	@PutMapping("oauth/member/modify-member-info")
@@ -138,7 +138,7 @@ public class MemberController {
 	)
 	@ApiResponses(
 			{
-					@ApiResponse(code = 200, message = "변경된 비밀번호", response = String.class)
+					@ApiResponse(code = 200, message = "반환값 없음")
 			}
 	)
 	@GetMapping("/member/find/{email}")
