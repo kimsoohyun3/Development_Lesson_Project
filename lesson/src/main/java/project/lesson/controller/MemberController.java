@@ -24,6 +24,7 @@ import project.lesson.dto.member.MemberInfoResponseDto;
 import project.lesson.dto.member.MemberSaveRequestDto;
 import project.lesson.dto.member.MemberSaveResponseDto;
 import project.lesson.dto.member.ModifyMemberPasswordRequestDto;
+import project.lesson.dto.signin.OAuthKakaoSignInRequestDto;
 import project.lesson.service.AuthMailService;
 import project.lesson.service.MemberService;
 import project.lesson.service.TokenProvider;
@@ -110,6 +111,25 @@ public class MemberController {
 	) {
 		return memberService.modifyMemberPassword(tokenProvider.validateAndGetUserId(token.substring(7)),
 				modifyMemberPasswordRequestDto);
+	}
+
+	@ApiOperation(
+			value = "카카오 소셜로그인 후 닉네임,유저구분,나이대,커리어 정보 설정",
+			notes = "카카오 소셜로그인 후 닉네임,유저구분,나이대,커리어 정보 설정합니다."
+	)
+	@ApiResponses(
+			{
+					@ApiResponse(code = 200, message = "변경된 비밀번호", response = String.class)
+			}
+	)
+	@PutMapping("oauth/member/modify-member-info")
+	public String modifyMemberInfoAfterOauthKakaoSignIn(
+			@RequestHeader("Authorization") String token,
+			@RequestBody @Valid OAuthKakaoSignInRequestDto oAuthKakaoSignInRequestDto
+	) {
+		return memberService.modifyMemberInfoAfterOauthKakaoSignIn(
+				tokenProvider.validateAndGetUserId(token.substring(7)),
+				oAuthKakaoSignInRequestDto);
 	}
 
 	@ApiOperation(

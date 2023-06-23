@@ -46,11 +46,12 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 						"/v1/studentPost/{postId}",
 						"/v1/studentPosts",
 						"/v1/notice/**",
-						"/v1/notices"
+						"/v1/notices",
+						"/oauth/kakao/**"
 				)
 				.permitAll()
 				.anyRequest()
-				.hasRole("USER")
+				.hasAnyRole("USER", "ADMIN")
 				.and()
 				.exceptionHandling()
 				.authenticationEntryPoint(new CustomAuthenticationEntryPoint())

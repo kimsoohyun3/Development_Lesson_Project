@@ -11,6 +11,7 @@ import project.lesson.dto.member.MemberInfoResponseDto;
 import project.lesson.dto.member.MemberSaveRequestDto;
 import project.lesson.dto.member.MemberSaveResponseDto;
 import project.lesson.dto.member.ModifyMemberPasswordRequestDto;
+import project.lesson.dto.signin.OAuthKakaoSignInRequestDto;
 import project.lesson.entity.studentPost.StudentPost;
 import project.lesson.entity.member.Member;
 import project.lesson.entity.member.UserClassification;
@@ -81,6 +82,19 @@ public class MemberService {
 				});
 
 		return findMember.modifyPassword(modifyMemberPasswordRequestDto.getPassword());
+	}
+	@Transactional
+	public String modifyMemberInfoAfterOauthKakaoSignIn(
+			String memberId,
+			OAuthKakaoSignInRequestDto oAuthKakaoSignInRequestDto
+	){
+		Member findMember = memberRepository
+				.findById(memberId)
+				.orElseThrow(() -> {
+					throw new IllegalArgumentException("존재하지 않는 ID입니다.");
+				});
+
+		return findMember.modifyMemberInfoAfterOauthKakaoSignIn(oAuthKakaoSignInRequestDto);
 	}
 
 }
