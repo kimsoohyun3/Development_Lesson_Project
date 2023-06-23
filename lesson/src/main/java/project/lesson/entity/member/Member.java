@@ -27,28 +27,28 @@ public class Member extends BaseEntity {
 	@Column(name = "ID")
 	String id;
 
-	@Column(name = "PASSWORD")
+	@Column(name = "PASSWORD", nullable = true)
 	String password;
 
 	@Column(name = "EMAIL", nullable = false, unique = true)
 	String email;
 
-	@Column(name = "NICKNAME", unique = true)
+	@Column(name = "NICKNAME", unique = true, nullable = true)
 	String nickname;
 
 	@Column(name = "GENDER", nullable = false)
 	@Enumerated(EnumType.STRING)
 	Gender gender;
 
-	@Column(name = "USER_CLASSIFICATION")
+	@Column(name = "USER_CLASSIFICATION", nullable = true)
 	@Enumerated(EnumType.STRING)
 	UserClassification userClassification;
 
-	@Column(name = "AGE_GROUP", nullable = false)
+	@Column(name = "AGE_GROUP", nullable = true)
 	@Enumerated(EnumType.STRING)
 	AgeGroup ageGroup;
 
-	@Column(name = "CAREER")
+	@Column(name = "CAREER", nullable = true)
 	@Enumerated(EnumType.STRING)
 	Career career;
 
