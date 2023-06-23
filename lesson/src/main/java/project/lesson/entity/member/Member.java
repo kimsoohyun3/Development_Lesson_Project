@@ -44,7 +44,7 @@ public class Member extends BaseEntity {
 	@Enumerated(EnumType.STRING)
 	UserClassification userClassification;
 
-	@Column(name = "AGE_GROUP")
+	@Column(name = "AGE_GROUP", nullable = false)
 	@Enumerated(EnumType.STRING)
 	AgeGroup ageGroup;
 
