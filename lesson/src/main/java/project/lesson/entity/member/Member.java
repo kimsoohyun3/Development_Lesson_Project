@@ -87,6 +87,7 @@ public class Member extends BaseEntity {
 		this.userClassification = oAuthKakaoSignInRequestDto.getUserClassification();
 		this.ageGroup = oAuthKakaoSignInRequestDto.getAgeGroup();
 		this.career = oAuthKakaoSignInRequestDto.getCareer();
+		this.gender = oAuthKakaoSignInRequestDto.getGender();
 		return this.id;
 	}
 

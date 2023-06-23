@@ -36,4 +36,8 @@ public class OAuthKakaoSignInRequestDto {
 	@ApiModelProperty(example = "경력", value = "경력", required = true)
 	@NotNull(message = "올바르지 않은 경력 타입입니다.")
 	private Career career;
+
+	@ApiModelProperty(example = "성별", value = "성별", required = true)
+	@NotNull(message = "올바르지 않은 성별 타입입니다.")
+	private Gender gender;
 }
