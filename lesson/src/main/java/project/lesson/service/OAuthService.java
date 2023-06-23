@@ -37,7 +37,7 @@ public class OAuthService {
 		//String accessToken = getKakaoAccessToken(accessToken);
 		String reqURL = "https://kapi.kakao.com/v2/user/me";
 		String email = "";
-		Gender gender = null;
+		//Gender gender = null;
 		//access_token을 이용하여 사용자 정보 조회
 		try {
 			URL url = new URL(reqURL);
@@ -80,7 +80,7 @@ public class OAuthService {
 				email = element.getAsJsonObject().get("kakao_account").getAsJsonObject().get("email").getAsString();
 			}
 
-			boolean hasGender = element.getAsJsonObject()
+			/*boolean hasGender = element.getAsJsonObject()
 					.get("kakao_account")
 					.getAsJsonObject()
 					.get("has_gender")
@@ -94,11 +94,11 @@ public class OAuthService {
 								.getAsString()
 								.toUpperCase()
 				);
-			}
+			}*/
 
 			System.out.println("id : " + id);
 			System.out.println("email : " + email);
-			System.out.println("gender : " + gender);
+			//System.out.println("gender : " + gender);
 
 			br.close();
 
@@ -111,7 +111,7 @@ public class OAuthService {
 			Member createMember = Member.builder()
 					.email(email)
 					.id(UUID.randomUUID().toString())
-					.gender(gender)
+					//.gender(gender)
 					.build();
 
 			return new SignInResponseDto(tokenProvider.create(memberRepository.save(createMember)));
