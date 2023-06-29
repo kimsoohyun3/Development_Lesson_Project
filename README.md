@@ -47,6 +47,12 @@
 </table>
 
 </br>
+</br>
+
+<img width="500" alt="스크린샷 2023-06-24 오후 10 20 28" src="https://github.com/kimsoohyun3/Development_Lesson_Project/assets/127597074/15bc06cb-e6f7-46ec-9293-1f382928f555">
+
+<br/>
+</br>
 
 ## 🛠 사용 기술
 - Java
