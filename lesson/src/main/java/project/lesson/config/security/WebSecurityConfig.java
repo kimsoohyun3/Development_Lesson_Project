@@ -47,7 +47,7 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 				"/v1/notice/**",
 				"/v1/notices",
 				"/oauth/kakao/**",
-				"member/modify-password"
+				"/member/modify-password"
 			)
 			.permitAll()
 			.anyRequest()
