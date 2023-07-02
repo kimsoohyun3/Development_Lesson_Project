@@ -12,7 +12,6 @@ import org.springframework.security.web.authentication.UsernamePasswordAuthentic
 import org.springframework.web.cors.CorsConfiguration;
 import org.springframework.web.cors.CorsConfigurationSource;
 import org.springframework.web.cors.UrlBasedCorsConfigurationSource;
-import org.springframework.web.filter.CorsFilter;
 
 import lombok.AllArgsConstructor;
 import project.lesson.filter.JwtAuthenticationFilter;
@@ -25,56 +24,57 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 	@Override
 	protected void configure(HttpSecurity http) throws Exception {
 		http
-				.cors()
-				.and()
-				.httpBasic()
-				.disable()
-				.csrf()
-				.disable()
-				.sessionManagement()
-				.sessionCreationPolicy(SessionCreationPolicy.STATELESS)
-				.and()
-				.authorizeRequests()
-				.antMatchers(
-						"/member/join",
-						"/auth/**",
-						"/member/find/{email}",
-						"/member/info/{memberId}",
-						"/v1/teacherPost/{postId}",
-						"/teacherPost/myPosts/{memberId}",
-						"/v1/teacherPosts",
-						"/v1/studentPost/{postId}",
-						"/v1/studentPosts",
-						"/v1/notice/**",
-						"/v1/notices",
-						"/oauth/kakao/**"
-				)
-				.permitAll()
-				.anyRequest()
-				.hasAnyRole("USER", "ADMIN")
-				.and()
-				.exceptionHandling()
-				.authenticationEntryPoint(new CustomAuthenticationEntryPoint())
-				.and()
-				.exceptionHandling()
-				.accessDeniedHandler(new CustomAccessDeniedHandler());
+			.cors()
+			.and()
+			.httpBasic()
+			.disable()
+			.csrf()
+			.disable()
+			.sessionManagement()
+			.sessionCreationPolicy(SessionCreationPolicy.STATELESS)
+			.and()
+			.authorizeRequests()
+			.antMatchers(
+				"/member/join",
+				"/auth/**",
+				"/member/find/{email}",
+				"/member/info/{memberId}",
+				"/v1/teacherPost/{postId}",
+				"/teacherPost/myPosts/{memberId}",
+				"/v1/teacherPosts",
+				"/v1/studentPost/{postId}",
+				"/v1/studentPosts",
+				"/v1/notice/**",
+				"/v1/notices",
+				"/oauth/kakao/**",
+				"member/modify-password"
+			)
+			.permitAll()
+			.anyRequest()
+			.hasAnyRole("USER", "ADMIN")
+			.and()
+			.exceptionHandling()
+			.authenticationEntryPoint(new CustomAuthenticationEntryPoint())
+			.and()
+			.exceptionHandling()
+			.accessDeniedHandler(new CustomAccessDeniedHandler());
 
 		http.addFilterBefore(
-				jwtAuthenticationFilter,
-				UsernamePasswordAuthenticationFilter.class
+			jwtAuthenticationFilter,
+			UsernamePasswordAuthenticationFilter.class
 		);
 	}
 
 	@Override
 	public void configure(WebSecurity web) throws Exception {
 		web.ignoring().antMatchers(
-				"/v2/api-docs",
-				"/configuration/ui",
-				"/swagger-resources/**",
-				"/swagger-ui/**",
-				"/configuration/security",
-				"/webjars/**",
-				"/swagger/**"
+			"/v2/api-docs",
+			"/configuration/ui",
+			"/swagger-resources/**",
+			"/swagger-ui/**",
+			"/configuration/security",
+			"/webjars/**",
+			"/swagger/**"
 		);
 	}
 
