@@ -6,6 +6,13 @@
 
 <br/>
 
+### 🔗 Link
+
+## **배포 URL**
+> http://codingbada.s3-website.ap-northeast-2.amazonaws.com/
+
+<br/>
+
 ### **👨‍👨‍👧‍👧 Back-End 팀원**
 <table>
   <tr>
