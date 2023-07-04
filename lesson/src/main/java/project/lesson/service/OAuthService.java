@@ -1,10 +1,8 @@
 package project.lesson.service;
 
 import java.io.BufferedReader;
-import java.io.BufferedWriter;
 import java.io.IOException;
 import java.io.InputStreamReader;
-import java.io.OutputStreamWriter;
 import java.net.HttpURLConnection;
 import java.net.URL;
 import java.util.Optional;
@@ -16,8 +14,7 @@ import org.springframework.stereotype.Service;
 import com.google.gson.JsonElement;
 import com.google.gson.JsonParser;
 
-import project.lesson.dto.signin.SignInResponseDto;
-import project.lesson.entity.member.Gender;
+import project.lesson.dto.signin.OAuthSignInResponseDto;
 import project.lesson.entity.member.Member;
 import project.lesson.repository.MemberRepository;
 
@@ -33,7 +30,7 @@ public class OAuthService {
 		this.tokenProvider = tokenProvider;
 	}
 
-	public SignInResponseDto kakaoSingIn(String accessToken) {
+	public OAuthSignInResponseDto kakaoSingIn(String accessToken) {
 		//String accessToken = getKakaoAccessToken(accessToken);
 		String reqURL = "https://kapi.kakao.com/v2/user/me";
 		String email = "";
@@ -72,10 +69,10 @@ public class OAuthService {
 			int id = element.getAsJsonObject().get("id").getAsInt();
 
 			boolean hasEmail = element.getAsJsonObject()
-					.get("kakao_account")
-					.getAsJsonObject()
-					.get("has_email")
-					.getAsBoolean();
+				.get("kakao_account")
+				.getAsJsonObject()
+				.get("has_email")
+				.getAsBoolean();
 			if (hasEmail) {
 				email = element.getAsJsonObject().get("kakao_account").getAsJsonObject().get("email").getAsString();
 			}
@@ -109,14 +106,14 @@ public class OAuthService {
 		Optional<Member> findMember = memberRepository.findByEmail(email);
 		if (findMember.isEmpty()) {
 			Member createMember = Member.builder()
-					.email(email)
-					.id(UUID.randomUUID().toString())
-					//.gender(gender)
-					.build();
+				.email(email)
+				.id(UUID.randomUUID().toString())
+				//.gender(gender)
+				.build();
 
-			return new SignInResponseDto(tokenProvider.create(memberRepository.save(createMember)));
+			return new OAuthSignInResponseDto(tokenProvider.create(memberRepository.save(createMember)), true);
 		} else {
-			return new SignInResponseDto(tokenProvider.create(findMember.get()));
+			return new OAuthSignInResponseDto(tokenProvider.create(findMember.get()), false);
 		}
 	}
 }

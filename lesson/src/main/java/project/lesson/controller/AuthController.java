@@ -21,6 +21,7 @@ import io.swagger.annotations.ApiResponse;
 import io.swagger.annotations.ApiResponses;
 import project.lesson.dto.authmail.AuthMailRequestDto;
 import project.lesson.dto.authmail.AuthMailResponseDto;
+import project.lesson.dto.signin.OAuthSignInResponseDto;
 import project.lesson.dto.signin.SignInRequestDto;
 import project.lesson.dto.signin.SignInResponseDto;
 import project.lesson.exception.authmail.AuthMailException;
@@ -88,7 +89,7 @@ public class AuthController {
 			}
 	)
 	@GetMapping("/oauth/kakao/{access-token}")
-	public ResponseEntity<SignInResponseDto> oauthKakao(@PathVariable(value = "access-token") String accessToken) {
+	public ResponseEntity<OAuthSignInResponseDto> oauthKakao(@PathVariable(value = "access-token") String accessToken) {
 		return ResponseEntity.ok().body(oAuthService.kakaoSingIn(accessToken));
 	}
 }
