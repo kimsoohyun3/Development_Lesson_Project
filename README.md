@@ -1,8 +1,15 @@
 ## ✍️ Projects
   <img src="https://github.com/kimsoohyun3/Development_Lesson_Project/assets/127597074/3b05acca-2743-438d-8151-cdca2a96d971" alt=""/>
 
-> 2023.05.07 - 2023.07.02(배포 후 종료 예정일)    
+> 2023.05.07 - 마무리 보완중
 > **Back-End Developer**
+
+<br/>
+
+### 🔗 Link
+
+## **배포 URL**
+> http://codingbada.s3-website.ap-northeast-2.amazonaws.com/
 
 <br/>
 
